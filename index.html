@@ -34,7 +34,8 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            overflow-x: hidden; /* Prevents horizontal scroll on mobile menu slide */
+            overflow-x: hidden;
+            /* Prevents horizontal scroll on mobile menu slide */
         }
 
         .section-padding {
@@ -51,7 +52,7 @@
         }
 
         /* --- BACKGROUND VIDEO --- */
-        video {
+        .video2 {
             object-fit: cover;
             width: 100%;
             height: 100vh;
@@ -73,7 +74,8 @@
             margin-top: 10px;
         }
 
-        .highlight, .section-header span {
+        .highlight,
+        .section-header span {
             color: var(--primary-red);
         }
 
@@ -151,7 +153,7 @@
 
         .navbar.scrolled {
             padding: 10px 5%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
             background: rgba(5, 5, 5, 0.98);
         }
 
@@ -233,98 +235,109 @@
         }
 
         /* --- UPDATED FOUNDERS SECTION --- */
-.founders-grid {
-    display: grid;
-    /* Increased min-width to 400px to give text more breathing room */
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 25px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
+        .founders-grid {
+            display: grid;
+            /* Increased min-width to 400px to give text more breathing room */
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-.founder-card {
-    display: flex;
-    background-color: #0a0a0a;
-    border-radius: 24px;
-    padding: 25px; /* Increased padding */
-    gap: 20px;
-    border: 1px solid #1a1a1a;
-    align-items: center; /* Vertically center image and text */
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
+        .founder-card {
+            display: flex;
+            background-color: #0a0a0a;
+            border-radius: 24px;
+            padding: 25px;
+            /* Increased padding */
+            gap: 20px;
+            border: 1px solid #1a1a1a;
+            align-items: center;
+            /* Vertically center image and text */
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
 
-.founder-img {
-    width: 160px; /* Slightly smaller image to give text more space */
-    height: 240px;
-    background-color: #1c1c1c; 
-    background-size: cover;
-    background-position: center;
-    border-radius: 16px;
-    flex-shrink: 0; /* Prevents the image from getting squished */
-}
+        .founder-img {
+            width: 160px;
+            /* Slightly smaller image to give text more space */
+            height: 240px;
+            background-color: #1c1c1c;
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            flex-shrink: 0;
+            /* Prevents the image from getting squished */
+        }
 
-.founder-info {
-    flex: 1; /* This is the FIX: It tells the text to take up all remaining space */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Prevents text from breaking the container */
-}
+        .founder-info {
+            flex: 1;
+            /* This is the FIX: It tells the text to take up all remaining space */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            /* Prevents text from breaking the container */
+        }
 
-.founder-info h2 {
-    font-size: 1.8rem;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    color: #fff;
-    white-space: normal; /* Allows name to wrap to two lines if very long */
-}
+        .founder-info h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            color: #fff;
+            white-space: normal;
+            /* Allows name to wrap to two lines if very long */
+        }
 
-.founder-title {
-    color: var(--primary-red);
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    font-weight: 700;
-}
+        .founder-title {
+            color: var(--primary-red);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
 
-.founder-info p {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
+        .founder-info p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
 
-.founder-socials {
-    display: flex;
-    gap: 15px;
-}
+        .founder-socials {
+            display: flex;
+            gap: 15px;
+        }
 
-.founder-socials a {
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    color: #fff;
-    opacity: 0.8;
-}
+        .founder-socials a {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: #fff;
+            opacity: 0.8;
+        }
 
-/* --- MOBILE FIX --- */
-@media (max-width: 480px) {
-    .founders-grid {
-        grid-template-columns: 1fr;
-    }
-    .founder-card {
-        flex-direction: column; /* Stack on small mobile */
-        text-align: center;
-    }
-    .founder-img {
-        width: 100%;
-        height: 300px;
-    }
-    .founder-socials {
-        justify-content: center;
-    }
-}
+        /* --- MOBILE FIX --- */
+        @media (max-width: 480px) {
+            .founders-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-card {
+                flex-direction: column;
+                /* Stack on small mobile */
+                text-align: center;
+            }
+
+            .founder-img {
+                width: 100%;
+                height: 300px;
+            }
+
+            .founder-socials {
+                justify-content: center;
+            }
+        }
 
 
         /* --- PROGRAMS --- */
@@ -355,7 +368,8 @@
             background-color: #000;
         }
 
-        .grid-card h4, .grid-card p {
+        .grid-card h4,
+        .grid-card p {
             position: relative;
             z-index: 2;
         }
@@ -439,7 +453,7 @@
 
         /* --- MAP CARDS --- */
         .map-card {
-            padding: 30px 20px; 
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -458,7 +472,7 @@
             border-radius: 8px;
             overflow: hidden;
             margin-bottom: 20px;
-            border: 1px solid #333; 
+            border: 1px solid #333;
         }
 
         .map-container iframe {
@@ -520,7 +534,7 @@
         .marquee-track {
             display: inline-flex;
             gap: 30px;
-            animation: scrollMarquee 50s linear infinite; 
+            animation: scrollMarquee 50s linear infinite;
         }
 
         .marquee-track:hover {
@@ -528,9 +542,9 @@
         }
 
         .marquee-track img {
-            width: 300px; 
+            width: 300px;
             height: 300px;
-            object-fit: cover; 
+            object-fit: cover;
             border-radius: 12px;
             border: 2px solid #222;
             cursor: pointer;
@@ -543,8 +557,13 @@
         }
 
         @keyframes scrollMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* --- INSTAGRAM GRID --- */
@@ -572,7 +591,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(230, 0, 38, 0.85); 
+            background-color: rgba(230, 0, 38, 0.85);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -610,8 +629,8 @@
             margin-bottom: 20px;
         }
 
-        .contact-form input, 
-        .contact-form select, 
+        .contact-form input,
+        .contact-form select,
         .contact-form textarea {
             width: 100%;
             padding: 15px;
@@ -622,8 +641,8 @@
             font-size: 1rem;
         }
 
-        .contact-form input:focus, 
-        .contact-form select:focus, 
+        .contact-form input:focus,
+        .contact-form select:focus,
         .contact-form textarea:focus {
             outline: none;
             border-color: var(--primary-red);
@@ -658,6 +677,7 @@
            MOBILE RESPONSIVENESS (MEDIA QUERIES) 
            ========================================= */
         @media (max-width: 950px) {
+
             /* Navbar adjustments for mobile */
             .nav-links {
                 position: absolute;
@@ -688,28 +708,78 @@
             }
 
             /* Burger Animation Classes */
-            .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
-            .toggle .line2 { opacity: 0; }
-            .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+            .toggle .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .toggle .line2 {
+                opacity: 0;
+            }
+
+            .toggle .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
 
             /* General Resizing */
-            .hero h1 { font-size: 3rem; }
-            .hero-buttons { flex-direction: column; }
-            .pricing-card.premium { transform: scale(1); }
-            .input-group { flex-direction: column; }
-            
-            .founders-grid { grid-template-columns: 1fr; }
-            .founder-card { flex-direction: column; align-items: center; text-align: center; }
-            .founder-img { width: 100%; height: 300px; }
-            .founder-info { padding-right: 0; align-items: center; }
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .pricing-card.premium {
+                transform: scale(1);
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .founders-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .founder-img {
+                width: 100%;
+                height: 300px;
+            }
+
+            .founder-info {
+                padding-right: 0;
+                align-items: center;
+            }
         }
 
         @media (max-width: 600px) {
-            .nav-links { width: 100%; }
-            .hero h1 { font-size: 2.5rem; }
-            .marquee-track img { width: 250px; height: 250px; }
-            .insta-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .insta-item { height: 180px; }
+            .nav-links {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .marquee-track img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .insta-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .insta-item {
+                height: 180px;
+            }
         }
     </style>
 </head>
@@ -736,7 +806,7 @@
     </nav>
 
     <section id="home" class="hero fade-in">
-        <video playsinline autoplay muted loop poster="polina.jpg" id="bgvid">
+        <video class="video2" playsinline autoplay muted loop poster="polina.jpg" id="bgvid">
             <source src="assets/video.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
@@ -753,13 +823,15 @@
         </div>
     </section>
 
-        <section id="transformations" class="transformations section-padding fade-in">
+    <section id="transformations" class="transformations section-padding fade-in">
         <div class="section-header">
-            <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">WELLNESS REDEFINED</p>
+            <p class="subtitle"
+                style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
+                WELLNESS REDEFINED</p>
             <h3>REAL <span>RESULTS</span></h3>
             <p>See the Finix Transformation Program in action.</p>
         </div>
-        
+
         <div class="marquee-container">
             <div class="marquee-track">
                 <img src="assets/2026/1 (1).jpeg" alt="Finix Transformation Before and After">
@@ -789,17 +861,21 @@
 
     <section id="about" class="about section-padding fade-in">
         <div class="section-header" style="margin-bottom: 60px;">
-            <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">THE ARCHITECTS</p>
+            <p class="subtitle"
+                style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
+                THE ARCHITECTS</p>
             <h3 style="font-size: 3rem;">MEET THE <span class="highlight">FOUNDERS</span></h3>
         </div>
-        
+
         <div class="founders-grid">
             <div class="founder-card fade-in">
-                <div class="founder-img" style="background-image: url('assets/founders/c5268067-d175-4d4b-9c9b-00a30d8a00ef.jpg');"></div>
+                <div class="founder-img"
+                    style="background-image: url('assets/founders/c5268067-d175-4d4b-9c9b-00a30d8a00ef.jpg');"></div>
                 <div class="founder-info">
                     <h2>DT YASHPAL</h2>
                     <h5 class="founder-title">FOUNDER & DIETITIAN</h5>
-                    <p>Lead visionary behind Finix Fitness with over 15 years of experience in holistic body transformations and dietetics.</p>
+                    <p>Lead visionary behind Finix Fitness with over 15 years of experience in holistic body
+                        transformations and dietetics.</p>
                     <div class="founder-socials">
                         <a href="#">INSTAGRAM</a>
                         <a href="#">TWITTER</a>
@@ -808,11 +884,14 @@
             </div>
 
             <div class="founder-card fade-in">
-                <div class="founder-img" style="background-image: url('assets/founders/WhatsApp\ Image\ 2026-04-02\ at\ 11.50.51\ PM.jpeg');"></div>
+                <div class="founder-img"
+                    style="background-image: url('assets/founders/WhatsApp\ Image\ 2026-04-02\ at\ 11.50.51\ PM.jpeg');">
+                </div>
                 <div class="founder-info">
                     <h2>GIRISH</h2>
                     <h5 class="founder-title">FOUNDER & HEAD COACH</h5>
-                    <p>Master trainer specializing in strength conditioning and biomechanics, dedicated to building elite athletes from the ground up.</p>
+                    <p>Master trainer specializing in strength conditioning and biomechanics, dedicated to building
+                        elite athletes from the ground up.</p>
                     <div class="founder-socials">
                         <a href="#">INSTAGRAM</a>
                         <a href="#">TWITTER</a>
@@ -821,11 +900,14 @@
             </div>
 
             <div class="founder-card fade-in">
-                <div class="founder-img" style="background-image: url('assets/founders/WhatsApp\ Image\ 2026-04-02\ at\ 11.50.52\ PM.jpeg');"></div>
+                <div class="founder-img"
+                    style="background-image: url('assets/founders/WhatsApp\ Image\ 2026-04-02\ at\ 11.50.52\ PM.jpeg');">
+                </div>
                 <div class="founder-info">
                     <h2>RAJATHA</h2>
                     <h5 class="founder-title">FOUNDER & WELLNESS DIRECTOR</h5>
-                    <p>Driving the holistic approach to fitness, blending modern high-intensity training techniques with mindful recovery and nutrition.</p>
+                    <p>Driving the holistic approach to fitness, blending modern high-intensity training techniques with
+                        mindful recovery and nutrition.</p>
                     <div class="founder-socials">
                         <a href="#">INSTAGRAM</a>
                         <a href="#">TWITTER</a>
@@ -841,24 +923,97 @@
             <p>Tailored routines for every fitness level.</p>
         </div>
         <div class="grid-container">
-            <div class="grid-card fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80');">
+            <div class="grid-card fade-in"
+                style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80');">
                 <h4>PERSONAL TRAINING</h4>
                 <p>1-on-1 coaching designed specifically for your body type and goals.</p>
             </div>
-            <div class="grid-card fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=800&q=80');">
+            <div class="grid-card fade-in"
+                style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=800&q=80');">
                 <h4>CARDIO CRUSH</h4>
                 <p>High-intensity interval training to maximize fat loss and stamina.</p>
             </div>
-            <div class="grid-card fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1524863479829-916d8e77f114?auto=format&fit=crop&w=800&q=80');">
+            <div class="grid-card fade-in"
+                style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1524863479829-916d8e77f114?auto=format&fit=crop&w=800&q=80');">
                 <h4>ZUMBA & DANCE</h4>
                 <p>Rhythmic, energetic sessions to burn calories while having fun.</p>
             </div>
-            <div class="grid-card fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80');">
+            <div class="grid-card fade-in"
+                style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80');">
                 <h4>WEIGHTLIFTING</h4>
                 <p>Free weights and machine guided sessions for muscle hypertrophy.</p>
             </div>
         </div>
     </section>
+
+    <style>
+.video-only-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.pure-video-card.vertical-card {
+    flex: 0 1 300px; /* Limits the width of each vertical card */
+    background: #000;
+    border: 1px solid #222;
+    border-radius: 15px; /* Softer corners for vertical cards */
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.pure-video-card.vertical-card:hover {
+    border-color: #ff3e3e;
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+.pure-video-card.vertical-card video {
+    width: 100%;
+    /* This 9/16 ratio is for vertical/phone-recorded videos */
+    aspect-ratio: 9 / 16; 
+    display: block;
+    object-fit: cover;
+}
+
+/* Mobile: Ensure they don't get too small */
+@media (max-width: 600px) {
+    .pure-video-card.vertical-card {
+        flex: 0 1 90%; 
+    }
+}
+    </style>
+
+    <section id="reviews" class="reviews section-padding dark-bg fade-in">
+    <div class="container">
+        <div class="section-header">
+            <h3>REAL <span>RESULTS</span></h3>
+            <p>Direct from the Finix Crew.</p>
+        </div>
+
+        <div class="video-only-row">
+            <div class="pure-video-card vertical-card">
+                <video controls>
+                    <source src="assets/2026/reviews/WhatsApp Video 2026-04-03 at 8.23.04 AM (1).mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="pure-video-card vertical-card">
+                <video controls>
+                    <source src="assets/2026/reviews/WhatsApp Video 2026-04-03 at 8.23.04 AM.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="pure-video-card vertical-card">
+                <video controls>
+                    <source src="assets/2026/reviews/WhatsApp Video 2026-04-03 at 8.23.05 AM (1).mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- <section id="memberships" class="memberships section-padding fade-in">
         <div class="section-header">
@@ -902,60 +1057,77 @@
         </div>
     </section> -->
 
-<section id="locations" class="locations section-padding dark-bg fade-in">
-    <div class="section-header">
-        <h3>WE ARE <span>LOCATED</span> IN</h3>
-    </div>
-    <div class="grid-container">
-        <div class="grid-card map-card fade-in">
-            <h4>INDIRANAGAR</h4>
-            <p class="address-text">Benaka Plaza, HAL 3rd Stage</p>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0123!2d77.640!3d12.971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16a380963333%3A0x6b490d34608f6575!2sFinix%20Fitness%20Studio%20Indiranagar!5e0!3m2!1sen!2sin!4v123456789" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <section id="locations" class="locations section-padding dark-bg fade-in">
+        <div class="section-header">
+            <h3>WE ARE <span>LOCATED</span> IN</h3>
+        </div>
+        <div class="grid-container">
+            <div class="grid-card map-card fade-in">
+                <h4>INDIRANAGAR</h4>
+                <p class="address-text">Benaka Plaza, HAL 3rd Stage</p>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0123!2d77.640!3d12.971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16a380963333%3A0x6b490d34608f6575!2sFinix%20Fitness%20Studio%20Indiranagar!5e0!3m2!1sen!2sin!4v123456789"
+                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Finix+Fitness+Studio+Indiranagar"
+                    target="_blank" class="btn-secondary map-btn">GET DIRECTIONS</a>
             </div>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Finix+Fitness+Studio+Indiranagar" target="_blank" class="btn-secondary map-btn">GET DIRECTIONS</a>
-        </div>
 
-        <div class="grid-card map-card fade-in">
-            <h4>BASAVANGUDI</h4>
-            <p class="address-text">Kodandarama Complex, Gandhi Bazaar</p>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5432!2d77.568!3d12.942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15ed09000001%3A0x4a9467776b29074a!2sFinix%20Fitness%20Basavanagudi!5e0!3m2!1sen!2sin!4v123456789" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <div class="grid-card map-card fade-in">
+                <h4>BASAVANGUDI</h4>
+                <p class="address-text">Kodandarama Complex, Gandhi Bazaar</p>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5432!2d77.568!3d12.942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15ed09000001%3A0x4a9467776b29074a!2sFinix%20Fitness%20Basavanagudi!5e0!3m2!1sen!2sin!4v123456789"
+                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Finix+Fitness+Basavanagudi" target="_blank"
+                    class="btn-secondary map-btn">GET DIRECTIONS</a>
             </div>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Finix+Fitness+Basavanagudi" target="_blank" class="btn-secondary map-btn">GET DIRECTIONS</a>
-        </div>
 
-        <div class="grid-card map-card fade-in">
-            <h4>ONLINE SESSIONS</h4>
-            <p class="address-text">Global Community</p>
-            <div class="map-container online-placeholder"></div>
-            <a href="#contact" class="btn-primary map-btn">JOIN NOW</a>
+            <div class="grid-card map-card fade-in">
+                <h4>ONLINE SESSIONS</h4>
+                <p class="address-text">Global Community</p>
+                <div class="map-container online-placeholder"></div>
+                <a href="#contact" class="btn-primary map-btn">JOIN NOW</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <section id="instagram" class="instagram section-padding dark-bg fade-in">
         <div class="section-header">
-            <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">@FINIXFITNESS2013</p>
+            <p class="subtitle"
+                style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
+                @FINIXFITNESS2013</p>
             <h3>FOLLOW OUR <span>JOURNEY</span></h3>
         </div>
         <div class="insta-grid">
-            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank" class="insta-item fade-in" style="background-image: url('assets/2026/insta/587808210_1640836236760328_5676610813380114163_n.jpg');">
+            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank"
+                class="insta-item fade-in"
+                style="background-image: url('assets/2026/insta/587808210_1640836236760328_5676610813380114163_n.jpg');">
                 <div class="insta-overlay"><span>VIEW POST</span></div>
             </a>
-            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank" class="insta-item fade-in" style="background-image: url('assets/2026/insta/561295339_1466400981238794_5970484679887975347_n.jpg');">
+            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank"
+                class="insta-item fade-in"
+                style="background-image: url('assets/2026/insta/561295339_1466400981238794_5970484679887975347_n.jpg');">
                 <div class="insta-overlay"><span>VIEW POST</span></div>
             </a>
-            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank" class="insta-item fade-in" style="background-image: url('assets/2026/insta/584400948_741986808922192_4094706736101690999_n.jpg');">
+            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank"
+                class="insta-item fade-in"
+                style="background-image: url('assets/2026/insta/584400948_741986808922192_4094706736101690999_n.jpg');">
                 <div class="insta-overlay"><span>VIEW POST</span></div>
             </a>
-            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank" class="insta-item fade-in" style="background-image: url('assets/2026/insta/659548172_18575593342037081_207015886091654141_n.jpg');">
+            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank"
+                class="insta-item fade-in"
+                style="background-image: url('assets/2026/insta/659548172_18575593342037081_207015886091654141_n.jpg');">
                 <div class="insta-overlay"><span>VIEW POST</span></div>
             </a>
         </div>
         <div style="text-align: center; margin-top: 50px;">
-            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank" class="btn-primary">FOLLOW US ON INSTAGRAM</a>
+            <a href="https://www.instagram.com/finixfitness2013?utm_source=qr&igsh=MWducDRzMjZ2eHFvdw==" target="_blank"
+                class="btn-primary">FOLLOW US ON INSTAGRAM</a>
         </div>
     </section>
 
@@ -970,45 +1142,69 @@
                     <input type="text" id="name" placeholder="Full Name" required>
                     <input type="email" id="email" placeholder="Email Address" required>
                 </div>
+
                 <div class="input-group">
                     <input type="tel" id="phone" placeholder="Phone Number" required>
                     <select id="inquiry" required>
                         <option value="" disabled selected>Inquiry Type</option>
-                        <option value="membership">Membership</option>
-                        <option value="training">Personal Training</option>
-                        <option value="career">Career / Recruitment</option>
+                        <option value="Membership">Membership</option>
+                        <option value="Personal Training">Personal Training</option>
+                        <option value="Career">Career / Recruitment</option>
                     </select>
                 </div>
-                <textarea id="message" rows="5" placeholder="Your Message or Goals..." required></textarea>
-                <button type="submit" class="btn-primary form-submit">SUBMIT APPLICATION</button>
+
+                <div class="input-group">
+                    <select id="branch" required>
+                        <option value="" disabled selected>Preferred Branch</option>
+                        <option value="Indiranagar">Indiranagar</option>
+                        <option value="Basavanagudi">Basavanagudi</option>
+                        <option value="Online">Online Sessions</option>
+                    </select>
+                    <select id="timeline" required>
+                        <option value="" disabled selected>When do you want to start?</option>
+                        <option value="Immediately">Immediately</option>
+                        <option value="After a week">After a week</option>
+                        <option value="Just inquiring">Just inquiring</option>
+                    </select>
+                </div>
+
+                <div class="input-group full-width">
+                    <input type="text" id="goal" placeholder="What's your fitness goal? (e.g. Weight loss, Muscle gain)"
+                        required style="width: 100%;">
+                </div>
+
+                <textarea id="message" rows="5" placeholder="Your Message or Additional Details..." required></textarea>
+
+                <button type="submit" class="btn-primary form-submit">SUBMIT VIA WHATSAPP</button>
             </form>
         </div>
     </section>
 
     <section>
-				<style>
-					.whatsapp {
-						position: fixed;
-						bottom: 10px;
-						right: 10px;
-						z-index: 9999;
-					}
+        <style>
+            .whatsapp {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                z-index: 9999;
+            }
 
-					.whatsapp img {
-						width: 50px;
-						height: 50px;
-						opacity: 50%;
-						transition: 0.3s;
-					}
+            .whatsapp img {
+                width: 50px;
+                height: 50px;
+                opacity: 50%;
+                transition: 0.3s;
+            }
 
-					.whatsapp img:hover {
-						opacity: 100%;
-					}
-				</style>
-				<a class="whatsapp" href="https://api.whatsapp.com/send?phone=8217500205&amp;text=Hi%20Finix%20Studio." target="_blank">
-					<img src="assets/whatsapp.png" alt="WhatsApp">
-				</a>
-			</section>
+            .whatsapp img:hover {
+                opacity: 100%;
+            }
+        </style>
+        <a class="whatsapp" href="https://api.whatsapp.com/send?phone=8217500205&amp;text=Hi%20Finix%20Studio."
+            target="_blank">
+            <img src="assets/whatsapp.png" alt="WhatsApp">
+        </a>
+    </section>
 
     <footer>
         <div class="footer-content">
@@ -1021,7 +1217,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
+
             // 1. MOBILE NAVIGATION TOGGLE
             const burger = document.querySelector('.burger');
             const nav = document.querySelector('.nav-links');
@@ -1061,7 +1257,7 @@
                 rootMargin: "0px 0px -50px 0px"
             };
 
-            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            const appearOnScroll = new IntersectionObserver(function (entries, observer) {
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) {
                         return;
@@ -1077,41 +1273,44 @@
             });
 
             // 4. FORM SUBMISSION HANDLING
-            // 4. FORM SUBMISSION HANDLING
-const form = document.getElementById('finixForm');
+            document.getElementById('finixForm').addEventListener('submit', function (e) {
+                e.preventDefault(); // Stop page from refreshing
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Prevent page refresh
+                // 1. Capture Form Values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const inquiry = document.getElementById('inquiry').value;
+                const branch = document.getElementById('branch').value;
+                const timeline = document.getElementById('timeline').value;
+                const goal = document.getElementById('goal').value;
+                const message = document.getElementById('message').value;
 
-    // 1. Get Form Values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const type = document.getElementById('inquiry').value;
-    const message = document.getElementById('message').value;
+                // 2. Format the WhatsApp Message
+                // %0A creates a line break in WhatsApp
+                const whatsappMessage =
+                    `*🔥 NEW FINIX CREW APPLICATION *%0A%0A` +
+                    `*Name:* ${name}%0A` +
+                    `*Email:* ${email}%0A` +
+                    `*Phone:* ${phone}%0A` +
+                    `*Inquiry:* ${inquiry}%0A` +
+                    `*Branch:* ${branch}%0A` +
+                    `*Fitness Goal:* ${goal}%0A` +
+                    `*Start Date:* ${timeline}%0A` +
+                    `*Message:* ${message}`;
 
-    // 2. Format the WhatsApp Message
-    // %0A is the code for a new line
-    const whatsappMessage = `*New Inquiry - Finix Fitness*%0A%0A` +
-        `*Name:* ${name}%0A` +
-        `*Email:* ${email}%0A` +
-        `*Phone:* ${phone}%0A` +
-        `*Type:* ${type}%0A` +
-        `*Message:* ${message}`;
+                // 3. Define WhatsApp Link (918217500205)
+                const whatsappUrl =
+                    `https://api.whatsapp.com/send?phone=918217500205&text=${whatsappMessage}`;
 
-    // 3. Construct the WhatsApp URL
-    const whatsappNumber = "918217500205"; // Added country code 91 for India
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${whatsappMessage}`;
+                // 4. Action
+                alert('Thank you! Redirecting to WhatsApp to send your details.');
+                window.open(whatsappUrl, '_blank');
 
-    // 4. Show success alert and open WhatsApp
-    alert('Thank you! Redirecting to WhatsApp to complete your application...');
-    
-    window.open(whatsappUrl, '_blank');
-    
-    form.reset(); // Clear the form fields
-});
-
+                this.reset(); // Reset form fields
+            });
         });
     </script>
 </body>
+
 </html>
