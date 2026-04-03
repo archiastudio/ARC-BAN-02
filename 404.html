@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Lost in the Gym</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --primary-red: #e60026;
+            --text-color: #ffffff;
+            --text-muted: #aaaaaa;
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Subtle background video or image overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)), 
+                        url('assets/transformation1.jpg'); /* Reuse one of your gym assets */
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .glitch-wrapper {
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--primary-red);
+            position: relative;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: -5px;
+        }
+
+        /* Simple Glitch Animation */
+        .glitch-wrapper::after {
+            content: "404";
+            position: absolute;
+            left: 2px;
+            text-shadow: -2px 0 #fff;
+            top: 0;
+            color: var(--primary-red);
+            background: var(--bg-color);
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: noise-anim 2s infinite linear alternate-reverse;
+        }
+
+        @keyframes noise-anim {
+            0% { clip: rect(10px, 9999px, 50px, 0); }
+            20% { clip: rect(30px, 9999px, 20px, 0); }
+            40% { clip: rect(60px, 9999px, 80px, 0); }
+            60% { clip: rect(10px, 9999px, 40px, 0); }
+            80% { clip: rect(90px, 9999px, 10px, 0); }
+            100% { clip: rect(40px, 9999px, 70px, 0); }
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background-color: var(--primary-red);
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #b3001e;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            .glitch-wrapper { font-size: 5rem; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="glitch-wrapper">404</div>
+        <h1>YOU'VE HIT A DEAD END.</h1>
+        <p>The page you're looking for doesn't exist or has been moved. Don't waste your energy here—get back to the workout.</p>
+        <a href="index.html" class="btn-back">BACK TO HOME</a>
+    </div>
+
+</body>
+</html>
