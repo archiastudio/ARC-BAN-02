@@ -7,7 +7,7 @@
     <title>FINIX Fitness | The 100-Day Transformation</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="/assets/logo.png">
+    <link id="favicon" rel="icon" type="image/x-icon" href="/assets/logo.png">
     <style>
         /* --- GLOBAL VARIABLES --- */
         :root {
@@ -47,7 +47,7 @@
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; position: fixed; width: 100%; top: 0; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #222; transition: all 0.3s ease; }
         .navbar.scrolled { padding: 10px 5%; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); background: rgba(5, 5, 5, 0.98); }
         .logo h2 { font-weight: 900; letter-spacing: 2px; }
-        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
         .nav-links a:hover { color: var(--primary-red); }
         .burger { display: none; cursor: pointer; }
         .burger div { width: 25px; height: 3px; background-color: var(--text-color); margin: 5px; transition: all 0.3s ease; }
@@ -114,6 +114,29 @@
         .grid-card p { color: #ddd; font-size: 0.95rem; margin-top: 15px; }
         .grid-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(230, 0, 38, 0.2); }
 
+        /* --- AEROBICS & ZUMBA CLASSES --- */
+        .classes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .class-card { background-color: #0a0a0a; border: 1px solid #222; border-radius: 15px; overflow: hidden; transition: 0.3s; }
+        .class-card:hover { border-color: var(--primary-red); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(230, 0, 38, 0.15); }
+        .class-img { height: 250px; background-size: cover; background-position: center; position: relative; }
+        .class-content { padding: 30px; }
+        .class-content h4 { font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase; color: #fff; }
+        .class-content p { color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; }
+        .class-badge { position: absolute; top: 15px; right: 15px; background: var(--primary-red); color: #fff; padding: 5px 12px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; text-transform: uppercase;}
+        .class-features { list-style: none; color: #ccc; margin-bottom: 25px; font-size: 0.9rem; }
+        .class-features li { margin-bottom: 8px; }
+        .class-features i { color: var(--primary-red); margin-right: 10px; }
+
+        /* --- MIXED MEDIA GALLERY --- */
+        .media-gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; max-width: 1400px; margin: 0 auto; }
+        .media-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1 / 1; border: 1px solid #222; transition: all 0.3s ease; background: #000; cursor: pointer; }
+        .media-item:hover { border-color: var(--primary-red); transform: scale(1.03); z-index: 2; box-shadow: 0 10px 30px rgba(230,0,38,0.3); }
+        .media-item img, .media-item video { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter 0.3s; }
+        .media-item:hover img, .media-item:hover video { filter: brightness(1.1); }
+        .media-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        .media-item:hover .media-overlay { opacity: 1; }
+        .media-icon { font-size: 2.5rem; color: #fff; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.8)); }
+
         /* --- LOCATIONS & INSTA --- */
         .map-card { padding: 30px 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: auto; background-image: none !important; }
         .address-text { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; }
@@ -148,7 +171,7 @@
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 950px) {
             .nav-links { position: absolute; right: 0px; top: 75px; height: 100vh; background-color: rgba(5, 5, 5, 0.98); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px; width: 60%; transform: translateX(100%); transition: transform 0.4s ease-in-out; }
-            .nav-links li { margin: 20px 0; }
+            .nav-links li { margin: 15px 0; }
             .nav-links.nav-active { transform: translateX(0%); }
             .burger { display: block; }
             .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
@@ -171,11 +194,39 @@
             .insta-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .insta-item { height: 180px; }
             .pure-video-card.vertical-card { flex: 0 1 90%; }
+            .media-gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+            .media-icon { font-size: 1.5rem; }
         }
     </style>
 </head>
 
 <body>
+
+    <script>
+        const originalTitle = document.title;
+        const originalFavicon = document.getElementById('favicon').href;
+        
+        // The "Away" assets
+        const awayTitles = ["Hey! Come Back!", "Hey! Lets Transform!"];
+        const awayFavicon = ["./assets/muscle.png","./assets/wieght.png"] 
+        
+        let titleInterval;
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                let i = 0;
+                titleInterval = setInterval(() => {
+                    document.title = awayTitles[i % awayTitles.length];
+                    document.getElementById('favicon').href = awayFavicon[i % awayFavicon.length];
+                    i++;
+                }, 2000);
+            } else {
+                clearInterval(titleInterval);
+                document.title = originalTitle;
+                document.getElementById('favicon').href = originalFavicon;
+            }
+        });
+    </script>
 
     <nav class="navbar" id="navbar">
         <div class="logo">
@@ -183,11 +234,13 @@
         </div>
         <ul class="nav-links">
             <li><a href="#home">HOME</a></li>
-            <li><a href="#the-100-days">THE 100 DAYS</a></li>
+            <li><a href="#the-100-days">100 DAYS</a></li>
             <li><a href="#transformations">RESULTS</a></li>
-            <li><a href="#about">THE ARCHITECTS</a></li>
+            <li><a href="#classes">CLASSES</a></li>
+            <li><a href="#gallery">GALLERY</a></li>
+            <li><a href="#about">ARCHITECTS</a></li>
             <li><a href="#locations">LOCATIONS</a></li>
-            <li><a href="#contact">APPLY NOW</a></li>
+            <li><a href="#contact">APPLY</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -325,6 +378,98 @@
                     <video controls>
                         <source src="assets/2026/reviews/WhatsApp Video 2026-04-03 at 8.23.05 AM (1).mp4" type="video/mp4">
                     </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="classes" class="classes section-padding fade-in">
+        <div class="container">
+            <div class="section-header">
+                <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
+                    GROUP SESSIONS</p>
+                <h3>AEROBICS & <span>ZUMBA</span></h3>
+                <p>Elevate your heart rate, burn calories, and move to the rhythm with our dynamic group classes.</p>
+            </div>
+
+            <div class="classes-grid">
+                <div class="class-card fade-in">
+                    <div class="class-img" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80');">
+                        <span class="class-badge">High Energy</span>
+                    </div>
+                    <div class="class-content">
+                        <h4>AEROBICS MASTERY</h4>
+                        <p>A comprehensive cardiovascular workout set to high-BPM tracks. Designed to boost stamina, improve lung capacity, and tone your entire body. Perfect for all fitness levels looking to sweat and shred.</p>
+                        <ul class="class-features">
+                            <li><i class="fas fa-fire-alt"></i> Burns up to 500+ calories per session</li>
+                            <li><i class="fas fa-heartbeat"></i> Dramatically improves cardiovascular health</li>
+                            <li><i class="fas fa-running"></i> Enhances coordination, agility & flexibility</li>
+                        </ul>
+                        <a href="#contact" class="btn-secondary">JOIN AEROBICS</a>
+                    </div>
+                </div>
+
+                <div class="class-card fade-in">
+                    <div class="class-img" style="background-image: url('https://images.unsplash.com/photo-1524863479829-916d8e77f114?auto=format&fit=crop&w=800&q=80');">
+                        <span class="class-badge">Rhythm & Burn</span>
+                    </div>
+                    <div class="class-content">
+                        <h4>ZUMBA DANCE FITNESS</h4>
+                        <p>Ditch the boring workout, join the party! Zumba combines Latin and international music with dance moves. It's a fun, effective, and exhilarating way to achieve your fitness goals while feeling the music.</p>
+                        <ul class="class-features">
+                            <li><i class="fas fa-music"></i> High-energy beats for an exhilarating workout</li>
+                            <li><i class="fas fa-smile"></i> Great for mental health and stress relief</li>
+                            <li><i class="fas fa-users"></i> Fun community vibe—no dance experience required</li>
+                        </ul>
+                        <a href="#contact" class="btn-secondary">JOIN ZUMBA</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery section-padding dark-bg fade-in">
+        <div class="container">
+            <div class="section-header">
+                <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
+                    INSIDE FINIX</p>
+                <h3>OUR <span>GALLERY</span></h3>
+                <p>A glimpse into the energy, effort, and environment at the studio. (Images & Videos)</p>
+            </div>
+
+            <div class="media-gallery-grid">
+                <div class="media-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Gym Workout">
+                    <div class="media-overlay"><i class="fas fa-camera media-icon"></i></div>
+                </div>
+
+                <div class="media-item fade-in">
+                    <video autoplay muted loop playsinline>
+                        <source src="assets/video.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-overlay"><i class="fas fa-video media-icon"></i></div>
+                </div>
+
+                <div class="media-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80" alt="Personal Training">
+                    <div class="media-overlay"><i class="fas fa-camera media-icon"></i></div>
+                </div>
+
+                <div class="media-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80" alt="Gym Floor">
+                    <div class="media-overlay"><i class="fas fa-camera media-icon"></i></div>
+                </div>
+
+                <div class="media-item fade-in">
+                    <video autoplay muted loop playsinline>
+                        <source src="assets/2026/reviews/WhatsApp Video 2026-04-03 at 8.23.04 AM.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-overlay"><i class="fas fa-video media-icon"></i></div>
+                </div>
+
+                <div class="media-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80" alt="Dumbbells">
+                    <div class="media-overlay"><i class="fas fa-camera media-icon"></i></div>
                 </div>
             </div>
         </div>
@@ -476,9 +621,10 @@
                 <div class="input-group">
                     <input type="tel" id="phone" placeholder="Phone Number" required>
                     <select id="inquiry" required>
-                        <option value="100-Day Transformation Program" selected>100-Day Transformation</option>
-                        <option value="Personal Training">Standard Personal Training</option>
-                        <option value="Membership">General Membership</option>
+                        <option value="100-Day Transformation Program" selected>100-Day Body Transformation</option>
+                        <option value="Personal Training">Personal Training</option>
+                        <option value="Group Classes (Aerobics/Zumba)">Group Classes (Aerobics/Zumba)</option>
+                        <option value="Membership">General Gym Membership</option>
                         <option value="Career">Career / Recruitment</option>
                     </select>
                 </div>
@@ -518,7 +664,7 @@
             <div class="logo">
                 <img src="assets/logo.png" width="100px" alt="Finix Fitness Logo">
             </div>
-            <p>© 2026 FINIX Fitness. All Rights Reserved.</p>
+            <p>© 2026 FINIX Fitness. All Rights Reserved. @<a href="https://archiastudio.com/?ref=FinixFitness" target="_blank"><u>ArchiaStudio</u></a>.com</p>
         </div>
     </footer>
 
