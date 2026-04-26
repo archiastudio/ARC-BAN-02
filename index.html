@@ -57,6 +57,31 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-main); }
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
 
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        #preloader img {
+            width: 150px;
+            animation: pulsePreload 1.5s infinite;
+        }
+        @keyframes pulsePreload {
+            0% { transform: scale(0.9); opacity: 0.7; filter: drop-shadow(0 0 10px rgba(230,0,38,0.2)); }
+            50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 30px rgba(230,0,38,0.8)); }
+            100% { transform: scale(0.9); opacity: 0.7; filter: drop-shadow(0 0 10px rgba(230,0,38,0.2)); }
+        }
+
         .section-padding { padding: 80px 5%; }
         .dark-bg { background-color: var(--bg-alt); }
         .section-header { text-align: center; margin-bottom: 50px; }
@@ -85,7 +110,7 @@
         .burger { display: none; cursor: pointer; }
         .burger div { width: 25px; height: 3px; background-color: var(--text-color); margin: 5px; transition: all 0.3s ease; }
 
-        /* --- HERO SECTION (NO IMAGES, INTERACTIVE UI) --- */
+        /* --- HERO SECTION --- */
         .hero { 
             min-height: 100vh; 
             display: flex; 
@@ -97,7 +122,6 @@
             background-color: var(--bg-color);
         }
 
-        /* Abstract CSS Backgrounds */
         .hero-abstract-bg {
             position: absolute;
             top: -50%; left: -50%; width: 200%; height: 200%;
@@ -118,7 +142,6 @@
             100% { transform: scale(1.1); opacity: 1; }
         }
 
-        /* Layout Container */
         .hero-container {
             display: flex;
             align-items: center;
@@ -130,14 +153,12 @@
             gap: 50px;
         }
 
-        /* Left Side Text */
         .hero-content { flex: 1; max-width: 600px; }
         .subtitle { letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; font-size: 0.85rem; color: var(--primary-red); }
         .hero h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
         .description { color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; line-height: 1.8; }
         .hero-buttons { display: flex; gap: 20px; }
 
-        /* Right Side Interactive Grid */
         .hero-services-grid {
             flex: 1;
             display: grid;
@@ -180,7 +201,6 @@
             transition: color 0.3s ease;
         }
 
-        /* Hover Effects */
         .hero-service-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary-red);
@@ -197,6 +217,16 @@
         }
         .hero-service-card.highlight-card i { color: var(--primary-red); }
 
+        /* --- TRANSFORMATIONS MARQUEE --- */
+        .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 20px 0; }
+        .marquee-container::before, .marquee-container::after { content: ""; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; pointer-events: none;}
+        .marquee-container::before { left: 0; background: linear-gradient(to right, var(--bg-color) 0%, transparent 100%); }
+        .marquee-container::after { right: 0; background: linear-gradient(to left, var(--bg-color) 0%, transparent 100%); }
+        .marquee-track { display: inline-flex; gap: 30px; animation: scrollMarquee 50s linear infinite; }
+        .marquee-track:hover { animation-play-state: paused; }
+        .marquee-track img { width: 300px; height: 300px; object-fit: cover; border-radius: 12px; border: 2px solid #222; cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .marquee-track img:hover { transform: scale(1.02); border-color: var(--primary-red); }
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- 100 DAYS PROGRAM STYLING --- */
         .program-grid-100 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; }
@@ -214,22 +244,39 @@
         .time-content p { color: #888; }
         .cta-wrapper { text-align: center; margin-top: 50px; }
 
-        /* --- TRANSFORMATIONS MARQUEE --- */
-        .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 20px 0; }
-        .marquee-container::before, .marquee-container::after { content: ""; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; }
-        .marquee-container::before { left: 0; background: linear-gradient(to right, var(--bg-color) 0%, transparent 100%); }
-        .marquee-container::after { right: 0; background: linear-gradient(to left, var(--bg-color) 0%, transparent 100%); }
-        .marquee-track { display: inline-flex; gap: 30px; animation: scrollMarquee 50s linear infinite; }
-        .marquee-track:hover { animation-play-state: paused; }
-        .marquee-track img { width: 300px; height: 300px; object-fit: cover; border-radius: 12px; border: 2px solid #222; cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease; }
-        .marquee-track img:hover { transform: scale(1.02); border-color: var(--primary-red); }
-        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
         /* --- VIDEO REVIEWS (VERTICAL) --- */
         .video-only-row { display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
         .pure-video-card.vertical-card { flex: 0 1 300px; background: #000; border: 1px solid #222; border-radius: 15px; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         .pure-video-card.vertical-card:hover { border-color: var(--primary-red); transform: scale(1.02); }
         .pure-video-card.vertical-card video { width: 100%; aspect-ratio: 9 / 16; display: block; object-fit: cover; }
+
+        /* --- GOOGLE REVIEWS MARQUEE --- */
+        .reviews-marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 20px 0; }
+        .reviews-marquee-container::before, .reviews-marquee-container::after { content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2; pointer-events: none;}
+        .reviews-marquee-container::before { left: 0; background: linear-gradient(to right, var(--bg-color) 0%, transparent 100%); }
+        .reviews-marquee-container::after { right: 0; background: linear-gradient(to left, var(--bg-color) 0%, transparent 100%); }
+        
+        .reviews-marquee-track { display: inline-flex; gap: 30px; animation: scrollReviews 70s linear infinite; }
+        .reviews-marquee-track:hover { animation-play-state: paused; }
+        @keyframes scrollReviews { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .review-card { 
+            background: #0a0a0a; padding: 30px; border-radius: 12px; border: 1px solid #222; 
+            position: relative; transition: all 0.4s ease;
+            width: 380px; flex-shrink: 0; white-space: normal; /* To let text wrap naturally */
+            cursor: pointer;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .review-card:hover { border-color: var(--primary-red); transform: translateY(-10px) scale(1.02); box-shadow: 0 15px 30px rgba(230, 0, 38, 0.15); background: linear-gradient(145deg, #111, #1a0505); }
+        
+        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .reviewer-info { display: flex; align-items: center; gap: 15px; }
+        .reviewer-avatar { width: 45px; height: 45px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; color: var(--primary-red); border: 1px solid #333; }
+        .reviewer-name { font-weight: 700; color: #fff; font-size: 1rem; }
+        .review-branch { font-size: 0.75rem; color: #777; text-transform: uppercase; letter-spacing: 1px; }
+        .stars { color: #f5b301; font-size: 0.9rem; margin-bottom: 15px; }
+        .review-text { font-size: 0.95rem; color: #ccc; line-height: 1.6; font-style: italic; }
+        .google-icon { width: 25px; height: auto; }
 
         /* --- FOUNDERS SECTION --- */
         .founders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px; max-width: 1400px; margin: 0 auto; }
@@ -296,6 +343,14 @@
         .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 15px; background-color: #000; border: 1px solid #333; color: var(--text-color); border-radius: 4px; font-size: 1rem; }
         .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: var(--primary-red); }
         .contact-form textarea { resize: vertical; margin-bottom: 20px; }
+        
+        /* Slider Styles */
+        .slider { -webkit-appearance: none; width: 100%; height: 8px; border-radius: 4px; background: #333; outline: none; opacity: 0.9; transition: opacity .2s; }
+        .slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--primary-red); cursor: pointer; transition: transform 0.2s; }
+        .slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+        .slider::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--primary-red); cursor: pointer; transition: transform 0.2s; }
+        .slider::-moz-range-thumb:hover { transform: scale(1.15); }
+
         .form-submit { width: 100%; padding: 15px; font-size: 1.1rem; }
 
         /* --- FOOTER & WHATSAPP --- */
@@ -336,6 +391,7 @@
             .hero-services-grid { grid-template-columns: 1fr; }
 
             .marquee-track img { width: 250px; height: 250px; }
+            .review-card { width: 300px; }
             .insta-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .insta-item { height: 180px; }
             .pure-video-card.vertical-card { flex: 0 1 90%; }
@@ -346,6 +402,10 @@
 </head>
 
 <body>
+
+    <div id="preloader">
+        <img src="assets/logo.png" alt="Finix Fitness Loading">
+    </div>
 
     <script>
         const originalTitle = document.title;
@@ -436,6 +496,31 @@
         </div>
     </section>
 
+    <section id="transformations" class="transformations section-padding fade-in">
+        <div class="section-header">
+            <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
+                100 DAYS OF DISCIPLINE</p>
+            <h3>REAL <span>RESULTS</span></h3>
+            <p>Witness what 100 days of the Finix method can achieve.</p>
+        </div>
+
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <img src="assets/2026/1 (1).jpeg" alt="Finix Fitness 100 Day Body Transformation Result">
+                <img src="assets/2026/1 (2).jpeg" alt="Finix Fitness Gym Transformation">
+                <img src="assets/2026/1 (3).jpeg" alt="Finix Fitness Weight Loss Journey">
+                <img src="assets/2026/1 (4).jpeg" alt="Personal Training Success Story">
+                <img src="assets/2026/1 (5).jpeg" alt="Muscle Gain Progress Photo">
+                <img src="assets/2026/1 (6).jpeg" alt="Finix Fitness Client Result">
+                <img src="assets/2026/1 (7).jpeg" alt="Bangalore Gym Transformation">
+                <img src="assets/2026/1 (8).jpeg" alt="Fitness Goal Achieved">
+                <img src="assets/2026/1 (9).jpeg" alt="Finix Fitness Crew Member">
+                <img src="assets/2026/1 (10).jpeg" alt="100 Day Fitness Challenge Winner">
+                <img src="assets/2026/1 (11).jpeg" alt="Healthy Lifestyle Change">
+            </div>
+        </div>
+    </section>
+
     <section id="the-100-days" class="transformation section-padding dark-bg fade-in">
         <div class="container">
             <div class="section-header">
@@ -501,27 +586,341 @@
         </div>
     </section>
 
-    <section id="transformations" class="transformations section-padding fade-in">
-        <div class="section-header">
-            <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
-                100 DAYS OF DISCIPLINE</p>
-            <h3>REAL <span>RESULTS</span></h3>
-            <p>Witness what 100 days of the Finix method can achieve.</p>
-        </div>
+    <section id="google-reviews" class="google-reviews section-padding fade-in">
+        <div class="container" style="max-width: 100%; padding: 0;">
+            <div class="section-header">
+                <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">COMMUNITY FEEDBACK</p>
+                <h3>GOOGLE <span>REVIEWS</span></h3>
+                <p>See what our crew has to say about their experience.</p>
+            </div>
+            
+            <div class="reviews-marquee-container">
+                <div class="reviews-marquee-track">
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Rohan M.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Joined the 100-day program here and it completely changed my lifestyle. The trainers push you to your absolute limits but make sure your form is perfect."</p>
+                    </div>
 
-        <div class="marquee-container">
-            <div class="marquee-track">
-                <img src="assets/2026/1 (1).jpeg" alt="Finix Fitness 100 Day Body Transformation Result">
-                <img src="assets/2026/1 (2).jpeg" alt="Finix Fitness Gym Transformation">
-                <img src="assets/2026/1 (3).jpeg" alt="Finix Fitness Weight Loss Journey">
-                <img src="assets/2026/1 (4).jpeg" alt="Personal Training Success Story">
-                <img src="assets/2026/1 (5).jpeg" alt="Muscle Gain Progress Photo">
-                <img src="assets/2026/1 (6).jpeg" alt="Finix Fitness Client Result">
-                <img src="assets/2026/1 (7).jpeg" alt="Bangalore Gym Transformation">
-                <img src="assets/2026/1 (8).jpeg" alt="Fitness Goal Achieved">
-                <img src="assets/2026/1 (9).jpeg" alt="Finix Fitness Crew Member">
-                <img src="assets/2026/1 (10).jpeg" alt="100 Day Fitness Challenge Winner">
-                <img src="assets/2026/1 (11).jpeg" alt="Healthy Lifestyle Change">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sneha K.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"The aerobics and Zumba classes at Basavanagudi are phenomenal. Such high energy and the community vibe is unmatched. Yashpal's nutritional guidance was the missing piece."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Arjun P.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <p class="review-text">"Best gym setup in the area by far. The personal training isn't just about lifting heavy; it's about correcting posture and rebuilding strength from the inside out."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Priya S.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"The customized diet plan is exactly what I needed. Lost 8kgs in 2 months without starving! Highly recommend the dietitians here."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">V</div><div><div class="reviewer-name">Vikram D.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Equipment is top notch. The trainers actually care about your progress and correct your form actively. The vibe is very professional."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Ananya R.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Zumba here is a whole vibe! It's the best way to end a stressful workday. Everyone is so welcoming regardless of your fitness level."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">K</div><div><div class="reviewer-name">Karthik N.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <p class="review-text">"Completed the 100-day transformation. Completely rebuilt my strength post-injury. The coaching staff is incredibly knowledgeable."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">M</div><div><div class="reviewer-name">Meera V.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Dietitian Yashpal gave me a sustainable diet, no fad diets or starving. I feel stronger and more energetic than ever."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Rahul T.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Girish's biomechanics knowledge is insane. My deadlift form is finally perfect and my lower back pain is completely gone."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Shruti B.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Cleanest gym in the area. Great equipment and friendly staff. They sanitize the machines regularly which I really appreciate."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Aditya Singh</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Incredible community. The energy on the floor makes you want to push harder. Truly the best fitness studio I've joined."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">N</div><div><div class="reviewer-name">Nidhi P.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <p class="review-text">"Aerobics mastery class burns so many calories. Love the music selection and the instructors are very motivating."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sameer J.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Joined for weight loss, ended up falling in love with strength training. The coaches here really invest time in you."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Pooja M.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Rajatha's wellness approach helped me balance fitness and mental health. It's more than just a gym, it's a healing space."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">D</div><div><div class="reviewer-name">Deepak C.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Worth every penny. The 100-day structure keeps you accountable. The results speak for themselves."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">T</div><div><div class="reviewer-name">Tanya K.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"15 years of experience shows. These guys know exactly what they are doing. Very safe and inclusive environment."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">V</div><div><div class="reviewer-name">Vivek S.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <p class="review-text">"Best clinical dietitians in Bangalore. Combined with the training, it completely fixed my metabolic issues."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">K</div><div><div class="reviewer-name">Kavya G.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Transformed my body and my confidence. The trainers genuinely care about you. Thank you Finix crew!"</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Rohan M.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Joined the 100-day program here and it completely changed my lifestyle. The trainers push you to your absolute limits but make sure your form is perfect."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sneha K.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"The aerobics and Zumba classes at Basavanagudi are phenomenal. Such high energy and the community vibe is unmatched. Yashpal's nutritional guidance was the missing piece."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Arjun P.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <p class="review-text">"Best gym setup in the area by far. The personal training isn't just about lifting heavy; it's about correcting posture and rebuilding strength from the inside out."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Priya S.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"The customized diet plan is exactly what I needed. Lost 8kgs in 2 months without starving! Highly recommend the dietitians here."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">V</div><div><div class="reviewer-name">Vikram D.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Equipment is top notch. The trainers actually care about your progress and correct your form actively. The vibe is very professional."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Ananya R.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Zumba here is a whole vibe! It's the best way to end a stressful workday. Everyone is so welcoming regardless of your fitness level."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">K</div><div><div class="reviewer-name">Karthik N.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <p class="review-text">"Completed the 100-day transformation. Completely rebuilt my strength post-injury. The coaching staff is incredibly knowledgeable."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">M</div><div><div class="reviewer-name">Meera V.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Dietitian Yashpal gave me a sustainable diet, no fad diets or starving. I feel stronger and more energetic than ever."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Rahul T.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Girish's biomechanics knowledge is insane. My deadlift form is finally perfect and my lower back pain is completely gone."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Shruti B.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Cleanest gym in the area. Great equipment and friendly staff. They sanitize the machines regularly which I really appreciate."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Aditya Singh</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Incredible community. The energy on the floor makes you want to push harder. Truly the best fitness studio I've joined."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">N</div><div><div class="reviewer-name">Nidhi P.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <p class="review-text">"Aerobics mastery class burns so many calories. Love the music selection and the instructors are very motivating."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sameer J.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Joined for weight loss, ended up falling in love with strength training. The coaches here really invest time in you."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Pooja M.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Rajatha's wellness approach helped me balance fitness and mental health. It's more than just a gym, it's a healing space."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">D</div><div><div class="reviewer-name">Deepak C.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Worth every penny. The 100-day structure keeps you accountable. The results speak for themselves."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">T</div><div><div class="reviewer-name">Tanya K.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"15 years of experience shows. These guys know exactly what they are doing. Very safe and inclusive environment."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">V</div><div><div class="reviewer-name">Vivek S.</div><div class="review-branch">Indiranagar Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <p class="review-text">"Best clinical dietitians in Bangalore. Combined with the training, it completely fixed my metabolic issues."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info"><div class="reviewer-avatar">K</div><div><div class="reviewer-name">Kavya G.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
+                        </div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="review-text">"Transformed my body and my confidence. The trainers genuinely care about you. Thank you Finix crew!"</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -530,7 +929,7 @@
         <div class="container">
             <div class="section-header">
                 <h3>CREW <span>TESTIMONIALS</span></h3>
-                <p>Direct from those who completed the journey.</p>
+                <p>Direct video logs from those who completed the journey.</p>
             </div>
 
             <div class="video-only-row">
@@ -818,6 +1217,13 @@
                     <input type="text" id="goal" placeholder="What's your fitness goal? (e.g. Weight loss, Muscle gain)" required style="width: 100%;">
                 </div>
 
+                <div class="input-group full-width" style="flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 30px;">
+                    <label for="budget" style="color: #aaa; font-size: 0.95rem; font-weight: bold;">
+                        Estimated Budget (INR): <span id="budgetValue" style="color: var(--primary-red);">₹30,000</span>
+                    </label>
+                    <input type="range" id="budget" name="budget" min="30000" max="100000" step="5000" value="30000" class="slider">
+                </div>
+
                 <textarea id="message" rows="5" placeholder="Tell us about your current lifestyle and where you want to be in 100 days..." required></textarea>
 
                 <button type="submit" class="btn-primary form-submit">BEGIN MY TRANSFORMATION</button>
@@ -839,6 +1245,17 @@
     </footer>
 
     <script>
+        // ==========================================
+        // 0. PRELOADER LOGIC
+        // ==========================================
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            // Give it a short delay so the pulse animation can be seen
+            setTimeout(() => {
+                preloader.classList.add('hide');
+            }, 800); 
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
 
             // ==========================================
@@ -891,7 +1308,17 @@
             faders.forEach(fader => { appearOnScroll.observe(fader); });
 
             // ==========================================
-            // 4. FORM SUBMISSION (WHATSAPP)
+            // 4. BUDGET SLIDER LOGIC
+            // ==========================================
+            const budgetSlider = document.getElementById('budget');
+            const budgetValue = document.getElementById('budgetValue');
+            
+            budgetSlider.addEventListener('input', function() {
+                budgetValue.textContent = '₹' + parseInt(this.value).toLocaleString('en-IN');
+            });
+
+            // ==========================================
+            // 5. FORM SUBMISSION (WHATSAPP)
             // ==========================================
             document.getElementById('finixForm').addEventListener('submit', function (e) {
                 e.preventDefault(); 
@@ -903,7 +1330,10 @@
                 const branch = document.getElementById('branch').value;
                 const timeline = document.getElementById('timeline').value;
                 const goal = document.getElementById('goal').value;
+                const budget = document.getElementById('budget').value;
                 const message = document.getElementById('message').value;
+
+                const formattedBudget = '₹' + parseInt(budget).toLocaleString('en-IN');
 
                 const whatsappMessage =
                     `*🔥 NEW FINIX CREW APPLICATION *%0A%0A` +
@@ -913,6 +1343,7 @@
                     `*Inquiry:* ${inquiry}%0A` +
                     `*Branch:* ${branch}%0A` +
                     `*Fitness Goal:* ${goal}%0A` +
+                    `*Estimated Budget:* ${formattedBudget}%0A` +
                     `*Start Date:* ${timeline}%0A` +
                     `*Message:* ${message}`;
 
@@ -922,6 +1353,7 @@
                 window.open(whatsappUrl, '_blank');
 
                 this.reset(); 
+                budgetValue.textContent = '₹30,000'; // Reset slider visual text
             });
         });
     </script>
