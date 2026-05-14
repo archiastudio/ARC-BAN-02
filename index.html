@@ -398,6 +398,211 @@
             .media-gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
             .media-icon { font-size: 1.5rem; }
         }
+
+        /* ======================================= */
+/* ADVANCED GALLERY SYSTEM */
+/* ======================================= */
+
+.media-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.media-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #000;
+    cursor: pointer;
+    border: 1px solid #222;
+    transition: all 0.35s ease;
+    aspect-ratio: 1/1;
+}
+
+.media-item:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--primary-red);
+    box-shadow: 0 15px 40px rgba(230,0,38,0.25);
+}
+
+.media-item img,
+.media-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
+}
+
+.media-item:hover img,
+.media-item:hover video {
+    transform: scale(1.05);
+}
+
+.media-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.15)
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: .3s ease;
+}
+
+.media-item:hover .media-overlay {
+    opacity: 1;
+}
+
+.media-icon {
+    font-size: 2.2rem;
+    color: #fff;
+}
+
+/* ======================================= */
+/* MODAL */
+/* ======================================= */
+
+.gallery-modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.96);
+
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: .3s ease;
+
+    padding: 40px;
+}
+
+.gallery-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.gallery-modal-content {
+    width: 100%;
+    max-width: 1300px;
+    max-height: 90vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-modal-content img,
+.gallery-modal-content video {
+    max-width: 100%;
+    max-height: 90vh;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+
+    background: #000;
+}
+
+.gallery-close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: rgba(255,255,255,.08);
+
+    color: #fff;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+
+.gallery-close:hover {
+    background: var(--primary-red);
+    transform: rotate(90deg);
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: rgba(255,255,255,.08);
+
+    color: #fff;
+
+    font-size: 1.3rem;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+
+    z-index: 5;
+}
+
+.gallery-nav:hover {
+    background: var(--primary-red);
+}
+
+.gallery-nav.prev {
+    left: 25px;
+}
+
+.gallery-nav.next {
+    right: 25px;
+}
+
+/* ======================================= */
+/* MOBILE */
+/* ======================================= */
+
+@media(max-width:768px){
+
+    .media-gallery-grid{
+        grid-template-columns: repeat(2,1fr);
+        gap:12px;
+    }
+
+    .gallery-modal{
+        padding:20px;
+    }
+
+    .gallery-nav{
+        width:50px;
+        height:50px;
+    }
+}
     </style>
 </head>
 
@@ -506,17 +711,17 @@
 
         <div class="marquee-container">
             <div class="marquee-track">
-                <img src="assets/2026/1 (1).jpeg" alt="Finix Fitness 100 Day Body Transformation Result">
-                <img src="assets/2026/1 (2).jpeg" alt="Finix Fitness Gym Transformation">
-                <img src="assets/2026/1 (3).jpeg" alt="Finix Fitness Weight Loss Journey">
-                <img src="assets/2026/1 (4).jpeg" alt="Personal Training Success Story">
-                <img src="assets/2026/1 (5).jpeg" alt="Muscle Gain Progress Photo">
-                <img src="assets/2026/1 (6).jpeg" alt="Finix Fitness Client Result">
-                <img src="assets/2026/1 (7).jpeg" alt="Bangalore Gym Transformation">
-                <img src="assets/2026/1 (8).jpeg" alt="Fitness Goal Achieved">
-                <img src="assets/2026/1 (9).jpeg" alt="Finix Fitness Crew Member">
-                <img src="assets/2026/1 (10).jpeg" alt="100 Day Fitness Challenge Winner">
-                <img src="assets/2026/1 (11).jpeg" alt="Healthy Lifestyle Change">
+                <img src="assets/gallery/1 (1).jpeg" alt="Finix Fitness 100 Day Body Transformation Result">
+                <img src="assets/gallery/1 (2).jpeg" alt="Finix Fitness Gym Transformation">
+                <img src="assets/gallery/1 (3).jpeg" alt="Finix Fitness Weight Loss Journey">
+                <img src="assets/gallery/1 (4).jpeg" alt="Personal Training Success Story">
+                <img src="assets/gallery/1 (5).jpeg" alt="Muscle Gain Progress Photo">
+                <img src="assets/gallery/1 (6).jpeg" alt="Finix Fitness Client Result">
+                <img src="assets/gallery/1 (7).jpeg" alt="Bangalore Gym Transformation">
+                <img src="assets/gallery/1 (8).jpeg" alt="Fitness Goal Achieved">
+                <img src="assets/gallery/1 (9).jpeg" alt="Finix Fitness Crew Member">
+                <img src="assets/gallery/1 (10).jpeg" alt="100 Day Fitness Challenge Winner">
+                <img src="assets/gallery/1 (11).jpeg" alt="Healthy Lifestyle Change">
             </div>
         </div>
     </section>
@@ -997,52 +1202,56 @@
         </div>
     </section>
 
-    <section id="gallery" class="gallery section-padding dark-bg fade-in">
-        <div class="container">
-            <div class="section-header">
-                <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
-                    INSIDE FINIX</p>
-                <h3>OUR <span>GALLERY</span></h3>
-                <p>A glimpse into the energy, effort, and environment at the studio. (Images & Videos)</p>
-            </div>
+    <!-- ========================= -->
+<!-- GALLERY SECTION -->
+<!-- ========================= -->
 
-            <div class="media-gallery-grid">
-                <div class="media-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Finix Gym Workout">
-                    <div class="media-overlay"><i class="fas fa-camera media-icon"></i></div>
-                </div>
+<section id="gallery" class="section-padding dark-bg fade-in">
 
-                <div class="media-item fade-in">
-                    <video autoplay muted loop playsinline>
-                        <source src="assets/video.mp4" type="video/mp4">
-                    </video>
-                    <div class="media-overlay"><i class="fas fa-video media-icon"></i></div>
-                </div>
+    <div class="section-header">
+        <p class="subtitle"
+            style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
+            FINIX MEDIA
+        </p>
 
-                <div class="media-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80" alt="Personal Training Session">
-                    <div class="media-overlay"><i class="fas fa-camera media-icon"></i></div>
-                </div>
+        <h3>MEDIA <span>GALLERY</span></h3>
 
-                <div class="media-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80" alt="Gym Floor Finix Fitness">
-                    <div class="media-overlay"><i class="fas fa-camera media-icon"></i></div>
-                </div>
+        <p>
+            Transformations, workouts, gym moments & community energy.
+        </p>
+    </div>
 
-                <div class="media-item fade-in">
-                    <video autoplay muted loop playsinline>
-                        <source src="assets/2026/reviews/WhatsApp Video 2026-04-03 at 8.23.04 AM.mp4" type="video/mp4">
-                    </video>
-                    <div class="media-overlay"><i class="fas fa-video media-icon"></i></div>
-                </div>
+    <div class="media-gallery-grid" id="galleryGrid"></div>
 
-                <div class="media-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80" alt="Dumbbells and Weights">
-                    <div class="media-overlay"><i class="fas fa-camera media-icon"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div style="text-align:center; margin-top:40px;">
+        <button id="loadMoreBtn" class="btn-primary">
+            LOAD MORE
+        </button>
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FULLSCREEN MODAL -->
+<!-- ========================= -->
+
+<div class="gallery-modal" id="galleryModal">
+
+    <button class="gallery-close" id="galleryClose">
+        <i class="fas fa-times"></i>
+    </button>
+
+    <button class="gallery-nav prev" id="galleryPrev">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <div class="gallery-modal-content" id="galleryModalContent"></div>
+
+    <button class="gallery-nav next" id="galleryNext">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+</div>
 
     <section id="about" class="about section-padding fade-in">
         <div class="section-header" style="margin-bottom: 60px;">
@@ -1219,7 +1428,7 @@
 
                 <div class="input-group full-width" style="flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 30px;">
                     <label for="budget" style="color: #aaa; font-size: 0.95rem; font-weight: bold;">
-                        Estimated Budget (INR): <span id="budgetValue" style="color: var(--primary-red);">₹30,000</span>
+                        Estimated Budget (INR): <span id="budgetValue" style="color: var(--primary-red);">₹30,000</span> <i>(for 100-Day Body Transformation)</i>
                     </label>
                     <input type="range" id="budget" name="budget" min="30000" max="100000" step="5000" value="30000" class="slider">
                 </div>
@@ -1356,7 +1565,284 @@
                 budgetValue.textContent = '₹30,000'; // Reset slider visual text
             });
         });
+
     </script>
+
+    <script>
+
+/* ========================================= */
+/* GITHUB GALLERY AUTO FETCH */
+/* ========================================= */
+
+const githubApi =
+"https://api.github.com/repos/archiastudio/ARC-BAN-02/contents/assets/gallery";
+
+const githubRaw =
+"https://raw.githubusercontent.com/archiastudio/ARC-BAN-02/main/assets/gallery/";
+
+/* ========================================= */
+
+const galleryGrid = document.getElementById("galleryGrid");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+const galleryModal = document.getElementById("galleryModal");
+const galleryModalContent = document.getElementById("galleryModalContent");
+
+const galleryPrev = document.getElementById("galleryPrev");
+const galleryNext = document.getElementById("galleryNext");
+const galleryClose = document.getElementById("galleryClose");
+
+/* ========================================= */
+
+let galleryMedia = [];
+
+let visibleItems = 6;
+let currentIndex = 0;
+
+/* ========================================= */
+
+function isVideo(file){
+
+    return file.match(/\.(mp4|webm|ogg)$/i);
+}
+
+/* ========================================= */
+
+async function fetchGalleryMedia(){
+
+    try{
+
+        const response = await fetch(githubApi);
+
+        const files = await response.json();
+
+        galleryMedia = files
+            .filter(file => {
+
+                return /\.(jpg|jpeg|png|webp|gif|mp4|webm|ogg)$/i.test(file.name);
+
+            })
+            .map(file => githubRaw + encodeURIComponent(file.name));
+
+        renderGallery();
+
+    }catch(error){
+
+        console.error("Gallery fetch failed:", error);
+
+        galleryGrid.innerHTML = `
+            <p style="
+                color:white;
+                text-align:center;
+                grid-column:1/-1;
+            ">
+                Failed to load gallery media.
+            </p>
+        `;
+    }
+}
+
+/* ========================================= */
+
+function renderGallery(){
+
+    galleryGrid.innerHTML = "";
+
+    galleryMedia
+        .slice(0, visibleItems)
+        .forEach((media, index)=>{
+
+        const item = document.createElement("div");
+
+        item.className = "media-item";
+
+        item.innerHTML = `
+
+            ${
+                isVideo(media)
+
+                ?
+
+                `
+                <video muted playsinline preload="metadata">
+                    <source src="${media}" type="video/mp4">
+                </video>
+                `
+
+                :
+
+                `
+                <img src="${media}" alt="FINIX Gallery">
+                `
+            }
+
+            <div class="media-overlay">
+
+                <i class="
+                    fas
+                    ${isVideo(media)
+                        ? 'fa-play-circle'
+                        : 'fa-image'}
+                    media-icon">
+                </i>
+
+            </div>
+        `;
+
+        item.addEventListener("click", ()=>{
+
+            openModal(index);
+        });
+
+        galleryGrid.appendChild(item);
+    });
+
+    if(visibleItems >= galleryMedia.length){
+
+        loadMoreBtn.style.display = "none";
+
+    }else{
+
+        loadMoreBtn.style.display = "inline-block";
+    }
+}
+
+/* ========================================= */
+
+loadMoreBtn.addEventListener("click", ()=>{
+
+    visibleItems += 6;
+
+    renderGallery();
+});
+
+/* ========================================= */
+
+function openModal(index){
+
+    currentIndex = index;
+
+    updateModal();
+
+    galleryModal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+}
+
+/* ========================================= */
+
+function closeModal(){
+
+    galleryModal.classList.remove("active");
+
+    galleryModalContent.innerHTML = "";
+
+    document.body.style.overflow = "";
+}
+
+/* ========================================= */
+
+function updateModal(){
+
+    const media = galleryMedia[currentIndex];
+
+    galleryModalContent.innerHTML = "";
+
+    if(isVideo(media)){
+
+        galleryModalContent.innerHTML = `
+
+            <video controls autoplay playsinline>
+
+                <source src="${media}" type="video/mp4">
+
+            </video>
+        `;
+
+    }else{
+
+        galleryModalContent.innerHTML = `
+
+            <img src="${media}" alt="Gallery Viewer">
+        `;
+    }
+}
+
+/* ========================================= */
+
+function nextMedia(){
+
+    currentIndex++;
+
+    if(currentIndex >= galleryMedia.length){
+
+        currentIndex = 0;
+    }
+
+    updateModal();
+}
+
+/* ========================================= */
+
+function prevMedia(){
+
+    currentIndex--;
+
+    if(currentIndex < 0){
+
+        currentIndex = galleryMedia.length - 1;
+    }
+
+    updateModal();
+}
+
+/* ========================================= */
+
+galleryNext.addEventListener("click", nextMedia);
+
+galleryPrev.addEventListener("click", prevMedia);
+
+galleryClose.addEventListener("click", closeModal);
+
+/* ========================================= */
+
+galleryModal.addEventListener("click", (e)=>{
+
+    if(e.target === galleryModal){
+
+        closeModal();
+    }
+});
+
+/* ========================================= */
+
+document.addEventListener("keydown", (e)=>{
+
+    if(!galleryModal.classList.contains("active")) return;
+
+    if(e.key === "Escape"){
+
+        closeModal();
+    }
+
+    if(e.key === "ArrowRight"){
+
+        nextMedia();
+    }
+
+    if(e.key === "ArrowLeft"){
+
+        prevMedia();
+    }
+});
+
+/* ========================================= */
+/* INITIALIZE */
+/* ========================================= */
+
+fetchGalleryMedia();
+
+</script>
 </body>
 
 </html>
