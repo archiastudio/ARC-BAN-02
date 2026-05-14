@@ -150,106 +150,296 @@
 
         /* --- HERO SECTION --- */
         .hero { 
-            min-height: 100vh; 
+            min-height: calc(100vh - 60px); 
             display: flex; 
             align-items: center; 
-            padding: 0 5%; 
+            padding: 110px 5% 70px; 
             margin-top: 60px; 
             position: relative; 
             overflow: hidden;
             background-color: var(--bg-color);
+            isolation: isolate;
         }
 
-        .hero-abstract-bg {
+        .hero-media {
             position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(230, 0, 38, 0.1) 0%, rgba(5, 5, 5, 1) 40%);
-            z-index: 0;
-            animation: pulseGlow 10s infinite alternate;
+            inset: 0;
+            z-index: -4;
+            overflow: hidden;
         }
+        .hero-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(1.1) contrast(1.1);
+            opacity: 0.45;
+        }
+        .hero-vignette,
+        .hero-heat,
         .hero-grid-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.3;
-            z-index: 1;
+            inset: 0;
+            pointer-events: none;
+        }
+        .hero-vignette {
+            z-index: -3;
+            background:
+                linear-gradient(90deg, rgba(5,5,5,0.96) 0%, rgba(5,5,5,0.78) 42%, rgba(5,5,5,0.44) 100%),
+                linear-gradient(0deg, rgba(5,5,5,0.98) 0%, rgba(5,5,5,0.1) 45%, rgba(5,5,5,0.7) 100%);
+        }
+        .hero-heat {
+            z-index: -2;
+            background: radial-gradient(circle at var(--hero-x, 72%) var(--hero-y, 34%), rgba(230, 0, 38, 0.38), transparent 34%);
+            mix-blend-mode: screen;
+            transition: background 0.2s ease;
+        }
+        .hero-grid-overlay {
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+            background-size: 54px 54px;
+            mask-image: linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.2));
+            opacity: 0.55;
         }
 
         .hero-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.75fr);
             align-items: center;
-            justify-content: space-between;
             width: 100%;
-            max-width: 1400px;
+            min-width: 0;
+            max-width: 1380px;
             margin: 0 auto;
-            z-index: 2;
-            gap: 50px;
+            gap: 56px;
         }
 
-        .hero-content { flex: 1; max-width: 600px; }
+        .hero-content { max-width: 690px; min-width: 0; }
         .subtitle { letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; font-size: 0.85rem; color: var(--primary-red); }
-        .hero h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
-        .description { color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; line-height: 1.8; }
-        .hero-buttons { display: flex; gap: 20px; }
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(230,0,38,0.45);
+            border-radius: 999px;
+            background: rgba(230,0,38,0.12);
+            color: #fff;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .hero-kicker i { color: var(--primary-red); }
+        .hero h1 { font-size: clamp(3rem, 7vw, 6.9rem); font-weight: 900; line-height: 0.92; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0; }
+        .hero h1 .outline {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(255,255,255,0.78);
+            text-shadow: none;
+        }
+        .description { color: #d5d5d5; margin-bottom: 32px; font-size: 1.06rem; line-height: 1.8; max-width: 620px; }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+        .hero-trust-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+        .hero-trust-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 38px;
+            padding: 8px 12px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(12px);
+            border-radius: 6px;
+            color: #e7e7e7;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .hero-trust-item i { color: var(--primary-red); }
+
+        .hero-panel {
+            position: relative;
+            display: grid;
+            gap: 14px;
+            transform-style: preserve-3d;
+        }
+        .hero-athlete-card {
+            position: relative;
+            height: 520px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #060606 url('assets/pexels-mralpha-24809798.jpg') center / cover no-repeat;
+            box-shadow: 0 28px 80px rgba(0,0,0,0.5);
+            transform: perspective(900px) rotateY(var(--tilt-x, -4deg)) rotateX(var(--tilt-y, 3deg));
+            transition: transform 0.15s ease, border-color 0.3s ease;
+        }
+        .hero-athlete-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.82)),
+                linear-gradient(45deg, rgba(230,0,38,0.36), transparent 46%);
+        }
+        .hero-score {
+            position: absolute;
+            left: 22px;
+            bottom: 22px;
+            z-index: 2;
+            width: min(88%, 360px);
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 8px;
+            background: rgba(6,6,6,0.78);
+            backdrop-filter: blur(16px);
+        }
+        .hero-score-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .hero-score-top span:last-child { color: var(--primary-red); }
+        .hero-progress {
+            height: 9px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.14);
+            overflow: hidden;
+        }
+        .hero-progress span {
+            display: block;
+            width: var(--progress, 76%);
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #fff, var(--primary-red));
+            box-shadow: 0 0 20px rgba(230,0,38,0.45);
+            transition: width 0.35s ease;
+        }
+        .hero-score p {
+            margin-top: 12px;
+            color: #cfcfcf;
+            font-size: 0.84rem;
+            line-height: 1.5;
+        }
+        .hero-stat-stack {
+            position: absolute;
+            top: 18px;
+            right: -18px;
+            display: grid;
+            gap: 12px;
+            z-index: 3;
+        }
+        .hero-stat {
+            min-width: 148px;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 8px;
+            background: rgba(0,0,0,0.72);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+        }
+        .hero-stat strong {
+            display: block;
+            color: #fff;
+            font-size: 1.5rem;
+            line-height: 1;
+            font-weight: 900;
+        }
+        .hero-stat span {
+            color: #aaa;
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         .hero-services-grid {
-            flex: 1;
+            position: relative;
+            z-index: 4;
+            width: min(100%, 500px);
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 600px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 0 auto;
         }
         
         .hero-service-card {
-            background: rgba(15, 15, 15, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid #222;
-            padding: 30px 20px;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-height: 148px;
+            background: rgba(10, 10, 10, 0.86);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            color: var(--text-color);
+            transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
-        
-        .hero-service-card i {
-            font-size: 2.5rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            transition: color 0.3s ease;
+        .hero-service-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 10%, rgba(230,0,38,0.28), transparent 38%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
         }
-        
+        .hero-service-card i {
+            position: relative;
+            z-index: 1;
+            font-size: 1.55rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            transition: color 0.25s ease;
+        }
         .hero-service-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
         .hero-service-card p {
-            font-size: 0.85rem;
-            color: #777;
-            line-height: 1.4;
-            transition: color 0.3s ease;
+            position: relative;
+            z-index: 1;
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.45;
+            transition: color 0.25s ease;
         }
 
-        .hero-service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-red);
-            box-shadow: 0 10px 30px rgba(230, 0, 38, 0.15);
-            background: linear-gradient(145deg, #111, #1a0505);
+        .hero-service-card:hover,
+        .hero-service-card:focus-visible,
+        .hero-service-card.active {
+            transform: translateY(-6px);
+            border-color: rgba(230, 0, 38, 0.75);
+            box-shadow: 0 18px 48px rgba(230, 0, 38, 0.18);
+            background: rgba(22, 8, 8, 0.94);
+            outline: none;
         }
-        
-        .hero-service-card:hover i { color: var(--primary-red); }
-        .hero-service-card:hover p { color: #ccc; }
-
-        .hero-service-card.highlight-card {
-            border-color: rgba(230, 0, 38, 0.5);
-            background: rgba(26, 5, 5, 0.8);
-        }
-        .hero-service-card.highlight-card i { color: var(--primary-red); }
+        .hero-service-card:hover::before,
+        .hero-service-card:focus-visible::before,
+        .hero-service-card.active::before { opacity: 1; }
+        .hero-service-card:hover i,
+        .hero-service-card:focus-visible i,
+        .hero-service-card.active i { color: var(--primary-red); }
+        .hero-service-card:hover p,
+        .hero-service-card:focus-visible p,
+        .hero-service-card.active p { color: #e4e4e4; }
 
         /* --- TRANSFORMATIONS MARQUEE --- */
         .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 20px 0; }
@@ -413,7 +603,11 @@
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 1024px) {
-            .hero h1 { font-size: 3.5rem; }
+            .hero-container { grid-template-columns: 1fr; gap: 38px; }
+            .hero-content { max-width: 800px; }
+            .hero-panel { width: min(100%, 620px); margin: 0 auto; }
+            .hero-athlete-card { height: 500px; }
+            .hero-stat-stack { right: 18px; }
         }
         @media (max-width: 950px) {
             .nav-links { position: absolute; right: 0px; top: 75px; height: 100vh; background-color: rgba(5, 5, 5, 0.98); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px; width: 60%; transform: translateX(100%); transition: transform 0.4s ease-in-out; }
@@ -424,10 +618,12 @@
             .toggle .line2 { opacity: 0; }
             .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
             
-            .hero-container { flex-direction: column; text-align: center; padding-top: 100px; padding-bottom: 50px;}
-            .hero-content { align-items: center; display: flex; flex-direction: column; }
+            .hero { padding-top: 92px; }
+            .hero-container { text-align: center; }
+            .hero-content { align-items: center; display: flex; flex-direction: column; margin: 0 auto; }
             .hero-buttons { justify-content: center; }
             .hero-services-grid { width: 100%; max-width: 100%; }
+            .hero-trust-row { justify-content: center; }
 
             .input-group { flex-direction: column; }
             .founders-grid { grid-template-columns: 1fr; }
@@ -444,8 +640,23 @@
 
         @media (max-width: 600px) {
             .nav-links { width: 100%; }
-            .hero h1 { font-size: 2.5rem; }
+            .hero { padding: 84px 5% 46px; }
+            .hero-kicker { display: block; width: 100%; max-width: 100%; white-space: normal; line-height: 1.5; font-size: 0.58rem; letter-spacing: 0; overflow-wrap: anywhere; }
+            .hero-container { max-width: 344px; overflow: hidden; }
+            .hero-content { width: 100%; max-width: 344px; }
+            .hero h1 { width: 100%; font-size: 1.9rem; overflow-wrap: break-word; }
+            .description { width: 100%; max-width: 100%; font-size: 0.86rem; margin-bottom: 26px; overflow-wrap: anywhere; }
+            .hero-buttons { width: 100%; }
+            .hero-buttons a { width: 100%; text-align: center; }
+            .hero-panel { display: block; min-height: auto; max-width: 344px; overflow: hidden; }
+            .hero-athlete-card { position: relative; inset: auto; height: 410px; transform: none; }
+            .hero-stat-stack { top: 14px; right: 14px; }
+            .hero-stat { min-width: 124px; padding: 12px; }
+            .hero-stat strong { font-size: 1.24rem; }
+            .hero-score { left: 14px; right: 14px; bottom: 14px; width: auto; }
             .hero-services-grid { grid-template-columns: 1fr; }
+            .hero-panel .hero-services-grid { margin: 14px 0 0; }
+            .hero-service-card { min-height: auto; padding: 17px; }
 
             .marquee-track img { width: 250px; height: 250px; }
             .review-card { width: 300px; }
@@ -453,6 +664,13 @@
             .insta-item { height: 180px; }
             .pure-video-card.vertical-card { flex: 0 1 90%; }
             .media-icon { font-size: 1.5rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-media video { display: none; }
+            .hero-athlete-card,
+            .hero-service-card,
+            .hero-progress span { transition: none; }
         }
     </style>
 </head>
@@ -509,42 +727,75 @@
     </nav>
 
     <section id="home" class="hero fade-in">
-        <div class="hero-abstract-bg"></div>
+        <div class="hero-media" aria-hidden="true">
+            <video autoplay muted loop playsinline poster="assets/pexels-mralpha-24809798.jpg">
+                <source src="assets/video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-vignette"></div>
+        <div class="hero-heat"></div>
         <div class="hero-grid-overlay"></div>
 
         <div class="hero-container">
             <div class="hero-content">
-                <p class="subtitle">THE 100-DAY TRANSFORMATION HEADQUARTERS</p>
-                <h1>REBUILD YOUR<br><span class="highlight">ENTIRE LIFESTYLE.</span></h1>
+                <div class="hero-kicker"><i class="fas fa-bolt"></i> Bangalore's 100-Day Transformation Studio</div>
+                <h1>Train hard.<span class="outline">Transform<br>for real.</span></h1>
                 <p class="description">
-                    Don't just work out. Join the community that combines elite strength training, high-energy cardio, and clinical nutrition to completely rebuild lives.
+                    FINIX combines coached strength training, high-energy classes, and clinical nutrition into one focused plan built for measurable change.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">START YOUR 100 DAYS</a>
-                    <a href="#classes" class="btn-secondary">EXPLORE SERVICES</a>
+                    <a href="#contact" class="btn-primary large-btn">START YOUR 100 DAYS</a>
+                    <a href="#classes" class="btn-secondary large-btn">EXPLORE CLASSES</a>
+                </div>
+                <div class="hero-trust-row" aria-label="Finix Fitness highlights">
+                    <span class="hero-trust-item"><i class="fas fa-trophy"></i> 15+ years</span>
+                    <span class="hero-trust-item"><i class="fas fa-users"></i> 10,000+ lives rebuilt</span>
+                    <span class="hero-trust-item"><i class="fas fa-location-dot"></i> 2 Bangalore studios</span>
                 </div>
             </div>
 
-            <div class="hero-services-grid">
-                <div class="hero-service-card">
-                    <i class="fas fa-dumbbell"></i>
-                    <h4>Elite Gym</h4>
-                    <p>State-of-the-art equipment & expert personal coaching.</p>
+            <div class="hero-panel" aria-label="Interactive transformation program selector">
+                <div class="hero-athlete-card">
+                    <div class="hero-stat-stack">
+                        <div class="hero-stat">
+                            <strong>100</strong>
+                            <span>day roadmap</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>1:1</strong>
+                            <span>coach attention</span>
+                        </div>
+                    </div>
+                    <div class="hero-score">
+                        <div class="hero-score-top">
+                            <span id="heroMode">100-Day Program</span>
+                            <span id="heroProgressLabel">92%</span>
+                        </div>
+                        <div class="hero-progress"><span id="heroProgressBar"></span></div>
+                        <p id="heroModeText">A structured training, nutrition, and accountability plan designed to rebuild your routine from day one.</p>
+                    </div>
                 </div>
-                <div class="hero-service-card">
-                    <i class="fas fa-music"></i>
-                    <h4>Zumba & Aerobics</h4>
-                    <p>High-BPM group sessions to shred fat and build stamina.</p>
-                </div>
-                <div class="hero-service-card">
-                    <i class="fas fa-user-md"></i>
-                    <h4>Clinical Dietitian</h4>
-                    <p>In-house medical nutritionists crafting your custom fuel.</p>
-                </div>
-                <div class="hero-service-card highlight-card">
-                    <i class="fas fa-stopwatch"></i>
-                    <h4>100-Day Program</h4>
-                    <p>Our signature, guaranteed roadmap to your ultimate physique.</p>
+                <div class="hero-services-grid">
+                    <button class="hero-service-card" type="button" data-mode="Elite Gym" data-progress="76" data-copy="Strength training, modern equipment, and personal coaching for cleaner form and stronger sessions.">
+                        <i class="fas fa-dumbbell"></i>
+                        <h4>Elite Gym</h4>
+                        <p>Tap to preview the strength track.</p>
+                    </button>
+                    <button class="hero-service-card" type="button" data-mode="Zumba & Aerobics" data-progress="84" data-copy="High-BPM group sessions built for stamina, fat loss, coordination, and serious energy.">
+                        <i class="fas fa-music"></i>
+                        <h4>Zumba & Aerobics</h4>
+                        <p>Tap to preview the cardio track.</p>
+                    </button>
+                    <button class="hero-service-card" type="button" data-mode="Clinical Dietitian" data-progress="88" data-copy="Medical nutrition guidance that turns your workouts into a realistic, sustainable body plan.">
+                        <i class="fas fa-user-md"></i>
+                        <h4>Clinical Dietitian</h4>
+                        <p>Tap to preview your fuel plan.</p>
+                    </button>
+                    <button class="hero-service-card active" type="button" data-mode="100-Day Program" data-progress="92" data-copy="A structured training, nutrition, and accountability plan designed to rebuild your routine from day one.">
+                        <i class="fas fa-stopwatch"></i>
+                        <h4>100-Day Program</h4>
+                        <p>Tap to preview the full roadmap.</p>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1141,12 +1392,14 @@
         // ==========================================
         // 0. PRELOADER LOGIC
         // ==========================================
-        window.addEventListener('load', () => {
+        const hidePreloader = () => {
             const preloader = document.getElementById('preloader');
             setTimeout(() => {
                 preloader.classList.add('hide');
             }, 800); 
-        });
+        };
+        window.addEventListener('load', hidePreloader);
+        document.addEventListener('DOMContentLoaded', hidePreloader);
 
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -1200,7 +1453,41 @@
             faders.forEach(fader => { appearOnScroll.observe(fader); });
 
             // ==========================================
-            // 4. BUDGET SLIDER & GUILT TRIP LOGIC
+            // 4. HERO INTERACTION
+            // ==========================================
+            const hero = document.querySelector('.hero');
+            const heroPanel = document.querySelector('.hero-panel');
+            const heroCards = document.querySelectorAll('.hero-service-card');
+            const heroMode = document.getElementById('heroMode');
+            const heroModeText = document.getElementById('heroModeText');
+            const heroProgressLabel = document.getElementById('heroProgressLabel');
+            const heroProgressBar = document.getElementById('heroProgressBar');
+
+            heroCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    heroCards.forEach(item => item.classList.remove('active'));
+                    card.classList.add('active');
+                    heroMode.textContent = card.dataset.mode;
+                    heroModeText.textContent = card.dataset.copy;
+                    heroProgressLabel.textContent = `${card.dataset.progress}%`;
+                    heroProgressBar.style.setProperty('--progress', `${card.dataset.progress}%`);
+                });
+            });
+
+            if (hero && heroPanel && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                hero.addEventListener('pointermove', (event) => {
+                    const rect = hero.getBoundingClientRect();
+                    const x = ((event.clientX - rect.left) / rect.width) * 100;
+                    const y = ((event.clientY - rect.top) / rect.height) * 100;
+                    hero.style.setProperty('--hero-x', `${x}%`);
+                    hero.style.setProperty('--hero-y', `${y}%`);
+                    heroPanel.style.setProperty('--tilt-x', `${(x - 50) / 18}deg`);
+                    heroPanel.style.setProperty('--tilt-y', `${(50 - y) / 22}deg`);
+                });
+            }
+
+            // ==========================================
+            // 5. BUDGET SLIDER & GUILT TRIP LOGIC
             // ==========================================
             const budgetSlider = document.getElementById('budget');
             const budgetValue = document.getElementById('budgetValue');
@@ -1228,7 +1515,7 @@
             });
 
             // ==========================================
-            // 5. FORM SUBMISSION (WHATSAPP)
+            // 6. FORM SUBMISSION (WHATSAPP)
             // ==========================================
             document.getElementById('finixForm').addEventListener('submit', function (e) {
                 e.preventDefault(); 
