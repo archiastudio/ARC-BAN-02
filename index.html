@@ -82,6 +82,44 @@
             100% { transform: scale(0.9); opacity: 0.7; filter: drop-shadow(0 0 10px rgba(230,0,38,0.2)); }
         }
 
+        /* --- NEW ANIMATIONS --- */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+        @keyframes pulseStrong {
+            0% { box-shadow: 0 0 0 0 rgba(230,0,38,0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(230,0,38,0); }
+            100% { box-shadow: 0 0 0 0 rgba(230,0,38,0); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        .guilt-trip {
+            animation: shake 0.5s ease-in-out;
+            color: var(--primary-red);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-weight: 700;
+            background: rgba(230,0,38,0.1);
+            padding: 10px;
+            border-left: 3px solid var(--primary-red);
+            border-radius: 4px;
+        }
+        .form-submit {
+            animation: pulseStrong 2s infinite;
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        .floating-element:nth-child(even) {
+            animation-delay: 1.5s;
+        }
+
         .section-padding { padding: 80px 5%; }
         .dark-bg { background-color: var(--bg-alt); }
         .section-header { text-align: center; margin-bottom: 50px; }
@@ -136,10 +174,6 @@
             background-size: 40px 40px;
             opacity: 0.3;
             z-index: 1;
-        }
-        @keyframes pulseGlow {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 1; }
         }
 
         .hero-container {
@@ -263,7 +297,7 @@
         .review-card { 
             background: #0a0a0a; padding: 30px; border-radius: 12px; border: 1px solid #222; 
             position: relative; transition: all 0.4s ease;
-            width: 380px; flex-shrink: 0; white-space: normal; /* To let text wrap naturally */
+            width: 380px; flex-shrink: 0; white-space: normal;
             cursor: pointer;
             display: flex; flex-direction: column; justify-content: space-between;
         }
@@ -311,15 +345,37 @@
         .class-features li { margin-bottom: 8px; }
         .class-features i { color: var(--primary-red); margin-right: 10px; }
 
+        /* --- SCHEDULE BOX --- */
+        .schedule-box { background: #111; padding: 25px; border-radius: 12px; margin-top: 50px; border: 1px solid #222; }
+        .schedule-box h4 { color: var(--primary-red); text-align: center; margin-bottom: 30px; font-size: 1.2rem; letter-spacing: 2px; }
+        .schedule-row { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+        .schedule-branch { flex: 1; min-width: 250px; background: #000; padding: 20px; border-radius: 8px; border: 1px solid #333; }
+        .schedule-branch h5 { border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px; font-size: 1.1rem; }
+        .schedule-branch ul { list-style: none; }
+        .schedule-branch li { margin-bottom: 10px; color: #ccc; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+        .schedule-branch i { color: var(--primary-red); }
+
         /* --- MIXED MEDIA GALLERY --- */
-        .media-gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; max-width: 1400px; margin: 0 auto; }
-        .media-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1 / 1; border: 1px solid #222; transition: all 0.3s ease; background: #000; cursor: pointer; }
-        .media-item:hover { border-color: var(--primary-red); transform: scale(1.03); z-index: 2; box-shadow: 0 10px 30px rgba(230,0,38,0.3); }
-        .media-item img, .media-item video { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter 0.3s; }
-        .media-item:hover img, .media-item:hover video { filter: brightness(1.1); }
-        .media-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        .media-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; max-width: 1500px; margin: auto; }
+        .media-item { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 1 / 1; border: 1px solid #222; transition: all 0.35s ease; background: #000; cursor: pointer; }
+        .media-item:hover { transform: translateY(-6px) scale(1.02); border-color: var(--primary-red); box-shadow: 0 15px 40px rgba(230,0,38,0.25); z-index: 2; }
+        .media-item img, .media-item video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease, filter 0.3s; }
+        .media-item:hover img, .media-item:hover video { transform: scale(1.05); filter: brightness(1.1); }
+        .media-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.15)); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s ease; pointer-events: none; }
         .media-item:hover .media-overlay { opacity: 1; }
-        .media-icon { font-size: 2.5rem; color: #fff; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.8)); }
+        .media-icon { font-size: 2.2rem; color: #fff; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.8)); }
+
+        /* --- MODAL --- */
+        .gallery-modal { position: fixed; inset: 0; background: rgba(0,0,0,.96); z-index: 999999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: .3s ease; padding: 40px; }
+        .gallery-modal.active { opacity: 1; pointer-events: auto; }
+        .gallery-modal-content { width: 100%; max-width: 1300px; max-height: 90vh; display: flex; align-items: center; justify-content: center; }
+        .gallery-modal-content img, .gallery-modal-content video { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 16px; background: #000; }
+        .gallery-close { position: absolute; top: 25px; right: 30px; width: 55px; height: 55px; border-radius: 50%; border: none; background: rgba(255,255,255,.08); color: #fff; font-size: 1.2rem; cursor: pointer; transition: .3s ease; }
+        .gallery-close:hover { background: var(--primary-red); transform: rotate(90deg); }
+        .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 60px; height: 60px; border-radius: 50%; border: none; background: rgba(255,255,255,.08); color: #fff; font-size: 1.3rem; cursor: pointer; transition: .3s ease; z-index: 5; }
+        .gallery-nav:hover { background: var(--primary-red); }
+        .gallery-nav.prev { left: 25px; }
+        .gallery-nav.next { right: 25px; }
 
         /* --- LOCATIONS & INSTA --- */
         .map-card { padding: 30px 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: auto; background-image: none !important; }
@@ -385,6 +441,12 @@
             .timeline { margin-left: 10px; }
         }
 
+        @media (max-width: 768px) {
+            .media-gallery-grid { grid-template-columns: repeat(2,1fr); gap:12px; }
+            .gallery-modal { padding:20px; }
+            .gallery-nav { width:50px; height:50px; }
+        }
+
         @media (max-width: 600px) {
             .nav-links { width: 100%; }
             .hero h1 { font-size: 2.5rem; }
@@ -395,214 +457,8 @@
             .insta-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .insta-item { height: 180px; }
             .pure-video-card.vertical-card { flex: 0 1 90%; }
-            .media-gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
             .media-icon { font-size: 1.5rem; }
         }
-
-        /* ======================================= */
-/* ADVANCED GALLERY SYSTEM */
-/* ======================================= */
-
-.media-gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 18px;
-    max-width: 1500px;
-    margin: auto;
-}
-
-.media-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 18px;
-    background: #000;
-    cursor: pointer;
-    border: 1px solid #222;
-    transition: all 0.35s ease;
-    aspect-ratio: 1/1;
-}
-
-.media-item:hover {
-    transform: translateY(-6px) scale(1.02);
-    border-color: var(--primary-red);
-    box-shadow: 0 15px 40px rgba(230,0,38,0.25);
-}
-
-.media-item img,
-.media-item video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform .4s ease;
-}
-
-.media-item:hover img,
-.media-item:hover video {
-    transform: scale(1.05);
-}
-
-.media-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to top,
-        rgba(0,0,0,.75),
-        rgba(0,0,0,.15)
-    );
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-    transition: .3s ease;
-}
-
-.media-item:hover .media-overlay {
-    opacity: 1;
-}
-
-.media-icon {
-    font-size: 2.2rem;
-    color: #fff;
-}
-
-/* ======================================= */
-/* MODAL */
-/* ======================================= */
-
-.gallery-modal {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,.96);
-
-    z-index: 999999;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-    pointer-events: none;
-
-    transition: .3s ease;
-
-    padding: 40px;
-}
-
-.gallery-modal.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.gallery-modal-content {
-    width: 100%;
-    max-width: 1300px;
-    max-height: 90vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.gallery-modal-content img,
-.gallery-modal-content video {
-    max-width: 100%;
-    max-height: 90vh;
-
-    object-fit: contain;
-
-    border-radius: 16px;
-
-    background: #000;
-}
-
-.gallery-close {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-
-    width: 55px;
-    height: 55px;
-
-    border-radius: 50%;
-    border: none;
-
-    background: rgba(255,255,255,.08);
-
-    color: #fff;
-
-    font-size: 1.2rem;
-
-    cursor: pointer;
-
-    transition: .3s ease;
-}
-
-.gallery-close:hover {
-    background: var(--primary-red);
-    transform: rotate(90deg);
-}
-
-.gallery-nav {
-    position: absolute;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    width: 60px;
-    height: 60px;
-
-    border-radius: 50%;
-    border: none;
-
-    background: rgba(255,255,255,.08);
-
-    color: #fff;
-
-    font-size: 1.3rem;
-
-    cursor: pointer;
-
-    transition: .3s ease;
-
-    z-index: 5;
-}
-
-.gallery-nav:hover {
-    background: var(--primary-red);
-}
-
-.gallery-nav.prev {
-    left: 25px;
-}
-
-.gallery-nav.next {
-    right: 25px;
-}
-
-/* ======================================= */
-/* MOBILE */
-/* ======================================= */
-
-@media(max-width:768px){
-
-    .media-gallery-grid{
-        grid-template-columns: repeat(2,1fr);
-        gap:12px;
-    }
-
-    .gallery-modal{
-        padding:20px;
-    }
-
-    .gallery-nav{
-        width:50px;
-        height:50px;
-    }
-}
     </style>
 </head>
 
@@ -615,8 +471,6 @@
     <script>
         const originalTitle = document.title;
         const originalFavicon = document.getElementById('favicon').href;
-        
-        // The "Away" assets
         const awayTitles = ["Hey! Come Back!", "Hey! Lets Transform!"];
         const awayFavicon = ["./assets/muscle.png","./assets/wieght.png"] 
         
@@ -963,168 +817,6 @@
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="review-text">"Transformed my body and my confidence. The trainers genuinely care about you. Thank you Finix crew!"</p>
                     </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Rohan M.</div><div class="review-branch">Indiranagar Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Joined the 100-day program here and it completely changed my lifestyle. The trainers push you to your absolute limits but make sure your form is perfect."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sneha K.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"The aerobics and Zumba classes at Basavanagudi are phenomenal. Such high energy and the community vibe is unmatched. Yashpal's nutritional guidance was the missing piece."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Arjun P.</div><div class="review-branch">Indiranagar Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                        <p class="review-text">"Best gym setup in the area by far. The personal training isn't just about lifting heavy; it's about correcting posture and rebuilding strength from the inside out."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Priya S.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"The customized diet plan is exactly what I needed. Lost 8kgs in 2 months without starving! Highly recommend the dietitians here."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">V</div><div><div class="reviewer-name">Vikram D.</div><div class="review-branch">Indiranagar Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Equipment is top notch. The trainers actually care about your progress and correct your form actively. The vibe is very professional."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Ananya R.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Zumba here is a whole vibe! It's the best way to end a stressful workday. Everyone is so welcoming regardless of your fitness level."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">K</div><div><div class="reviewer-name">Karthik N.</div><div class="review-branch">Indiranagar Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                        <p class="review-text">"Completed the 100-day transformation. Completely rebuilt my strength post-injury. The coaching staff is incredibly knowledgeable."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">M</div><div><div class="reviewer-name">Meera V.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Dietitian Yashpal gave me a sustainable diet, no fad diets or starving. I feel stronger and more energetic than ever."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Rahul T.</div><div class="review-branch">Indiranagar Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Girish's biomechanics knowledge is insane. My deadlift form is finally perfect and my lower back pain is completely gone."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Shruti B.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Cleanest gym in the area. Great equipment and friendly staff. They sanitize the machines regularly which I really appreciate."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Aditya Singh</div><div class="review-branch">Indiranagar Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Incredible community. The energy on the floor makes you want to push harder. Truly the best fitness studio I've joined."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">N</div><div><div class="reviewer-name">Nidhi P.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                        <p class="review-text">"Aerobics mastery class burns so many calories. Love the music selection and the instructors are very motivating."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sameer J.</div><div class="review-branch">Indiranagar Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Joined for weight loss, ended up falling in love with strength training. The coaches here really invest time in you."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Pooja M.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Rajatha's wellness approach helped me balance fitness and mental health. It's more than just a gym, it's a healing space."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">D</div><div><div class="reviewer-name">Deepak C.</div><div class="review-branch">Indiranagar Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Worth every penny. The 100-day structure keeps you accountable. The results speak for themselves."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">T</div><div><div class="reviewer-name">Tanya K.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"15 years of experience shows. These guys know exactly what they are doing. Very safe and inclusive environment."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">V</div><div><div class="reviewer-name">Vivek S.</div><div class="review-branch">Indiranagar Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                        <p class="review-text">"Best clinical dietitians in Bangalore. Combined with the training, it completely fixed my metabolic issues."</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info"><div class="reviewer-avatar">K</div><div><div class="reviewer-name">Kavya G.</div><div class="review-branch">Basavanagudi Branch</div></div></div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="google-icon" alt="Google Logo">
-                        </div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="review-text">"Transformed my body and my confidence. The trainers genuinely care about you. Thank you Finix crew!"</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1167,7 +859,7 @@
             </div>
 
             <div class="classes-grid">
-                <div class="class-card fade-in">
+                <div class="class-card floating-element fade-in">
                     <div class="class-img" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80');">
                         <span class="class-badge">High Energy</span>
                     </div>
@@ -1183,7 +875,7 @@
                     </div>
                 </div>
 
-                <div class="class-card fade-in">
+                <div class="class-card floating-element fade-in">
                     <div class="class-img" style="background-image: url('https://images.unsplash.com/photo-1524863479829-916d8e77f114?auto=format&fit=crop&w=800&q=80');">
                         <span class="class-badge">Rhythm & Burn</span>
                     </div>
@@ -1199,59 +891,55 @@
                     </div>
                 </div>
             </div>
+
+            <div class="schedule-box fade-in">
+                <h4>AEROBICS & ZUMBA TIMINGS <br><span style="color:#fff; font-size: 0.9rem;">(MONDAY TO FRIDAY)</span></h4>
+                <div class="schedule-row">
+                    <div class="schedule-branch">
+                        <h5>INDIRANAGAR BRANCH</h5>
+                        <ul>
+                            <li><i class="far fa-clock"></i> 1st Batch: 6:00 AM – 7:00 AM</li>
+                            <li><i class="far fa-clock"></i> 2nd Batch: 6:30 PM – 7:30 PM</li>
+                        </ul>
+                    </div>
+                    <div class="schedule-branch">
+                        <h5>BASAVANAGUDI BRANCH</h5>
+                        <ul>
+                            <li><i class="far fa-clock"></i> 1st Batch: 6:30 AM – 7:30 AM</li>
+                            <li><i class="far fa-clock"></i> 2nd Batch: 11:00 AM – 12:00 PM</li>
+                            <li><i class="far fa-clock"></i> 3rd Batch: 6:30 PM – 7:30 PM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </section>
 
-    <!-- ========================= -->
-<!-- GALLERY SECTION -->
-<!-- ========================= -->
+    <section id="gallery" class="section-padding dark-bg fade-in">
 
-<section id="gallery" class="section-padding dark-bg fade-in">
+        <div class="section-header">
+            <p class="subtitle" style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
+                FINIX MEDIA
+            </p>
+            <h3>MEDIA <span>GALLERY</span></h3>
+            <p>Transformations, workouts, gym moments & community energy.</p>
+        </div>
 
-    <div class="section-header">
-        <p class="subtitle"
-            style="color: var(--primary-red); font-size: 0.8rem; letter-spacing: 4px; font-weight: bold; margin-bottom: 10px;">
-            FINIX MEDIA
-        </p>
+        <div class="media-gallery-grid" id="galleryGrid"></div>
 
-        <h3>MEDIA <span>GALLERY</span></h3>
+        <div style="text-align:center; margin-top:40px;">
+            <button id="loadMoreBtn" class="btn-primary">LOAD MORE</button>
+        </div>
 
-        <p>
-            Transformations, workouts, gym moments & community energy.
-        </p>
+    </section>
+
+    <div class="gallery-modal" id="galleryModal">
+        <button class="gallery-close" id="galleryClose"><i class="fas fa-times"></i></button>
+        <button class="gallery-nav prev" id="galleryPrev"><i class="fas fa-chevron-left"></i></button>
+        <div class="gallery-modal-content" id="galleryModalContent"></div>
+        <button class="gallery-nav next" id="galleryNext"><i class="fas fa-chevron-right"></i></button>
     </div>
-
-    <div class="media-gallery-grid" id="galleryGrid"></div>
-
-    <div style="text-align:center; margin-top:40px;">
-        <button id="loadMoreBtn" class="btn-primary">
-            LOAD MORE
-        </button>
-    </div>
-
-</section>
-
-<!-- ========================= -->
-<!-- FULLSCREEN MODAL -->
-<!-- ========================= -->
-
-<div class="gallery-modal" id="galleryModal">
-
-    <button class="gallery-close" id="galleryClose">
-        <i class="fas fa-times"></i>
-    </button>
-
-    <button class="gallery-nav prev" id="galleryPrev">
-        <i class="fas fa-chevron-left"></i>
-    </button>
-
-    <div class="gallery-modal-content" id="galleryModalContent"></div>
-
-    <button class="gallery-nav next" id="galleryNext">
-        <i class="fas fa-chevron-right"></i>
-    </button>
-
-</div>
 
     <section id="about" class="about section-padding fade-in">
         <div class="section-header" style="margin-bottom: 60px;">
@@ -1398,13 +1086,18 @@
 
                 <div class="input-group">
                     <input type="tel" id="phone" placeholder="Phone Number" required>
-                    <select id="inquiry" required>
-                        <option value="100-Day Transformation Program" selected>100-Day Body Transformation</option>
-                        <option value="Personal Training">Personal Training</option>
-                        <option value="Group Classes (Aerobics/Zumba)">Group Classes (Aerobics/Zumba)</option>
-                        <option value="Membership">General Gym Membership</option>
-                        <option value="Career">Career / Recruitment</option>
-                    </select>
+                    <div style="width: 100%;">
+                        <select id="inquiry" required>
+                            <option value="100-Day Transformation Program" selected>100-Day Body Transformation (Elite)</option>
+                            <option value="Personal Training">Personal Training</option>
+                            <option value="Group Classes (Aerobics/Zumba)">Group Classes (Aerobics/Zumba)</option>
+                            <option value="Membership">General Gym Membership</option>
+                            <option value="Career">Career / Recruitment</option>
+                        </select>
+                        <div id="guiltTrip" class="guilt-trip" style="display: none;">
+                            <i class="fas fa-exclamation-triangle"></i> Are you sure? Standard memberships will never give you the guaranteed, life-changing results of the 100-Day Transformation. Don't cheat yourself out of your true potential. 
+                        </div>
+                    </div>
                 </div>
 
                 <div class="input-group">
@@ -1426,7 +1119,7 @@
                     <input type="text" id="goal" placeholder="What's your fitness goal? (e.g. Weight loss, Muscle gain)" required style="width: 100%;">
                 </div>
 
-                <div class="input-group full-width" style="flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 30px;">
+                <div class="input-group full-width" id="budgetWrapper" style="flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 30px;">
                     <label for="budget" style="color: #aaa; font-size: 0.95rem; font-weight: bold;">
                         Estimated Budget (INR): <span id="budgetValue" style="color: var(--primary-red);">₹30,000</span> <i>(for 100-Day Body Transformation)</i>
                     </label>
@@ -1459,7 +1152,6 @@
         // ==========================================
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
-            // Give it a short delay so the pulse animation can be seen
             setTimeout(() => {
                 preloader.classList.add('hide');
             }, 800); 
@@ -1517,13 +1209,31 @@
             faders.forEach(fader => { appearOnScroll.observe(fader); });
 
             // ==========================================
-            // 4. BUDGET SLIDER LOGIC
+            // 4. BUDGET SLIDER & GUILT TRIP LOGIC
             // ==========================================
             const budgetSlider = document.getElementById('budget');
             const budgetValue = document.getElementById('budgetValue');
+            const inquirySelect = document.getElementById('inquiry');
+            const budgetWrapper = document.getElementById('budgetWrapper');
+            const guiltTrip = document.getElementById('guiltTrip');
             
             budgetSlider.addEventListener('input', function() {
                 budgetValue.textContent = '₹' + parseInt(this.value).toLocaleString('en-IN');
+            });
+
+            inquirySelect.addEventListener('change', function() {
+                if (this.value === '100-Day Transformation Program') {
+                    budgetWrapper.style.display = 'flex';
+                    guiltTrip.style.display = 'none';
+                } else {
+                    budgetWrapper.style.display = 'none';
+                    guiltTrip.style.display = 'block';
+                    
+                    // Retrigger CSS animation
+                    guiltTrip.style.animation = 'none';
+                    void guiltTrip.offsetWidth; 
+                    guiltTrip.style.animation = 'shake 0.5s ease-in-out';
+                }
             });
 
             // ==========================================
@@ -1542,7 +1252,10 @@
                 const budget = document.getElementById('budget').value;
                 const message = document.getElementById('message').value;
 
-                const formattedBudget = '₹' + parseInt(budget).toLocaleString('en-IN');
+                let formattedBudget = "N/A";
+                if(inquiry === '100-Day Transformation Program'){
+                    formattedBudget = '₹' + parseInt(budget).toLocaleString('en-IN');
+                }
 
                 const whatsappMessage =
                     `*🔥 NEW FINIX CREW APPLICATION *%0A%0A` +
@@ -1562,287 +1275,128 @@
                 window.open(whatsappUrl, '_blank');
 
                 this.reset(); 
-                budgetValue.textContent = '₹30,000'; // Reset slider visual text
+                budgetValue.textContent = '₹30,000';
+                budgetWrapper.style.display = 'flex';
+                guiltTrip.style.display = 'none';
             });
         });
 
     </script>
 
     <script>
+        /* ========================================= */
+        /* GITHUB GALLERY AUTO FETCH */
+        /* ========================================= */
 
-/* ========================================= */
-/* GITHUB GALLERY AUTO FETCH */
-/* ========================================= */
+        const githubApi = "https://api.github.com/repos/archiastudio/ARC-BAN-02/contents/assets/gallery";
+        const githubRaw = "https://raw.githubusercontent.com/archiastudio/ARC-BAN-02/main/assets/gallery/";
 
-const githubApi =
-"https://api.github.com/repos/archiastudio/ARC-BAN-02/contents/assets/gallery";
+        const galleryGrid = document.getElementById("galleryGrid");
+        const loadMoreBtn = document.getElementById("loadMoreBtn");
+        const galleryModal = document.getElementById("galleryModal");
+        const galleryModalContent = document.getElementById("galleryModalContent");
+        const galleryPrev = document.getElementById("galleryPrev");
+        const galleryNext = document.getElementById("galleryNext");
+        const galleryClose = document.getElementById("galleryClose");
 
-const githubRaw =
-"https://raw.githubusercontent.com/archiastudio/ARC-BAN-02/main/assets/gallery/";
+        let galleryMedia = [];
+        let visibleItems = 6;
+        let currentIndex = 0;
 
-/* ========================================= */
+        function isVideo(file){
+            return file.match(/\.(mp4|webm|ogg)$/i);
+        }
 
-const galleryGrid = document.getElementById("galleryGrid");
-const loadMoreBtn = document.getElementById("loadMoreBtn");
-
-const galleryModal = document.getElementById("galleryModal");
-const galleryModalContent = document.getElementById("galleryModalContent");
-
-const galleryPrev = document.getElementById("galleryPrev");
-const galleryNext = document.getElementById("galleryNext");
-const galleryClose = document.getElementById("galleryClose");
-
-/* ========================================= */
-
-let galleryMedia = [];
-
-let visibleItems = 6;
-let currentIndex = 0;
-
-/* ========================================= */
-
-function isVideo(file){
-
-    return file.match(/\.(mp4|webm|ogg)$/i);
-}
-
-/* ========================================= */
-
-async function fetchGalleryMedia(){
-
-    try{
-
-        const response = await fetch(githubApi);
-
-        const files = await response.json();
-
-        galleryMedia = files
-            .filter(file => {
-
-                return /\.(jpg|jpeg|png|webp|gif|mp4|webm|ogg)$/i.test(file.name);
-
-            })
-            .map(file => githubRaw + encodeURIComponent(file.name));
-
-        renderGallery();
-
-    }catch(error){
-
-        console.error("Gallery fetch failed:", error);
-
-        galleryGrid.innerHTML = `
-            <p style="
-                color:white;
-                text-align:center;
-                grid-column:1/-1;
-            ">
-                Failed to load gallery media.
-            </p>
-        `;
-    }
-}
-
-/* ========================================= */
-
-function renderGallery(){
-
-    galleryGrid.innerHTML = "";
-
-    galleryMedia
-        .slice(0, visibleItems)
-        .forEach((media, index)=>{
-
-        const item = document.createElement("div");
-
-        item.className = "media-item";
-
-        item.innerHTML = `
-
-            ${
-                isVideo(media)
-
-                ?
-
-                `
-                <video muted playsinline preload="metadata">
-                    <source src="${media}" type="video/mp4">
-                </video>
-                `
-
-                :
-
-                `
-                <img src="${media}" alt="FINIX Gallery">
-                `
+        async function fetchGalleryMedia(){
+            try{
+                const response = await fetch(githubApi);
+                const files = await response.json();
+                galleryMedia = files
+                    .filter(file => /\.(jpg|jpeg|png|webp|gif|mp4|webm|ogg)$/i.test(file.name))
+                    .map(file => githubRaw + encodeURIComponent(file.name));
+                renderGallery();
+            }catch(error){
+                console.error("Gallery fetch failed:", error);
+                galleryGrid.innerHTML = `<p style="color:white; text-align:center; grid-column:1/-1;">Failed to load gallery media.</p>`;
             }
+        }
 
-            <div class="media-overlay">
+        function renderGallery(){
+            galleryGrid.innerHTML = "";
+            galleryMedia.slice(0, visibleItems).forEach((media, index)=>{
+                const item = document.createElement("div");
+                item.className = "media-item";
+                item.innerHTML = `
+                    ${isVideo(media) ? `<video muted playsinline preload="metadata"><source src="${media}" type="video/mp4"></video>` : `<img src="${media}" alt="FINIX Gallery">`}
+                    <div class="media-overlay"><i class="fas ${isVideo(media) ? 'fa-play-circle' : 'fa-image'} media-icon"></i></div>
+                `;
+                item.addEventListener("click", ()=>{ openModal(index); });
+                galleryGrid.appendChild(item);
+            });
+            if(visibleItems >= galleryMedia.length){
+                loadMoreBtn.style.display = "none";
+            }else{
+                loadMoreBtn.style.display = "inline-block";
+            }
+        }
 
-                <i class="
-                    fas
-                    ${isVideo(media)
-                        ? 'fa-play-circle'
-                        : 'fa-image'}
-                    media-icon">
-                </i>
-
-            </div>
-        `;
-
-        item.addEventListener("click", ()=>{
-
-            openModal(index);
+        loadMoreBtn.addEventListener("click", ()=>{
+            visibleItems += 6;
+            renderGallery();
         });
 
-        galleryGrid.appendChild(item);
-    });
+        function openModal(index){
+            currentIndex = index;
+            updateModal();
+            galleryModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
 
-    if(visibleItems >= galleryMedia.length){
+        function closeModal(){
+            galleryModal.classList.remove("active");
+            galleryModalContent.innerHTML = "";
+            document.body.style.overflow = "";
+        }
 
-        loadMoreBtn.style.display = "none";
+        function updateModal(){
+            const media = galleryMedia[currentIndex];
+            galleryModalContent.innerHTML = "";
+            if(isVideo(media)){
+                galleryModalContent.innerHTML = `<video controls autoplay playsinline><source src="${media}" type="video/mp4"></video>`;
+            }else{
+                galleryModalContent.innerHTML = `<img src="${media}" alt="Gallery Viewer">`;
+            }
+        }
 
-    }else{
+        function nextMedia(){
+            currentIndex++;
+            if(currentIndex >= galleryMedia.length) currentIndex = 0;
+            updateModal();
+        }
 
-        loadMoreBtn.style.display = "inline-block";
-    }
-}
+        function prevMedia(){
+            currentIndex--;
+            if(currentIndex < 0) currentIndex = galleryMedia.length - 1;
+            updateModal();
+        }
 
-/* ========================================= */
+        galleryNext.addEventListener("click", nextMedia);
+        galleryPrev.addEventListener("click", prevMedia);
+        galleryClose.addEventListener("click", closeModal);
 
-loadMoreBtn.addEventListener("click", ()=>{
+        galleryModal.addEventListener("click", (e)=>{
+            if(e.target === galleryModal) closeModal();
+        });
 
-    visibleItems += 6;
+        document.addEventListener("keydown", (e)=>{
+            if(!galleryModal.classList.contains("active")) return;
+            if(e.key === "Escape") closeModal();
+            if(e.key === "ArrowRight") nextMedia();
+            if(e.key === "ArrowLeft") prevMedia();
+        });
 
-    renderGallery();
-});
-
-/* ========================================= */
-
-function openModal(index){
-
-    currentIndex = index;
-
-    updateModal();
-
-    galleryModal.classList.add("active");
-
-    document.body.style.overflow = "hidden";
-}
-
-/* ========================================= */
-
-function closeModal(){
-
-    galleryModal.classList.remove("active");
-
-    galleryModalContent.innerHTML = "";
-
-    document.body.style.overflow = "";
-}
-
-/* ========================================= */
-
-function updateModal(){
-
-    const media = galleryMedia[currentIndex];
-
-    galleryModalContent.innerHTML = "";
-
-    if(isVideo(media)){
-
-        galleryModalContent.innerHTML = `
-
-            <video controls autoplay playsinline>
-
-                <source src="${media}" type="video/mp4">
-
-            </video>
-        `;
-
-    }else{
-
-        galleryModalContent.innerHTML = `
-
-            <img src="${media}" alt="Gallery Viewer">
-        `;
-    }
-}
-
-/* ========================================= */
-
-function nextMedia(){
-
-    currentIndex++;
-
-    if(currentIndex >= galleryMedia.length){
-
-        currentIndex = 0;
-    }
-
-    updateModal();
-}
-
-/* ========================================= */
-
-function prevMedia(){
-
-    currentIndex--;
-
-    if(currentIndex < 0){
-
-        currentIndex = galleryMedia.length - 1;
-    }
-
-    updateModal();
-}
-
-/* ========================================= */
-
-galleryNext.addEventListener("click", nextMedia);
-
-galleryPrev.addEventListener("click", prevMedia);
-
-galleryClose.addEventListener("click", closeModal);
-
-/* ========================================= */
-
-galleryModal.addEventListener("click", (e)=>{
-
-    if(e.target === galleryModal){
-
-        closeModal();
-    }
-});
-
-/* ========================================= */
-
-document.addEventListener("keydown", (e)=>{
-
-    if(!galleryModal.classList.contains("active")) return;
-
-    if(e.key === "Escape"){
-
-        closeModal();
-    }
-
-    if(e.key === "ArrowRight"){
-
-        nextMedia();
-    }
-
-    if(e.key === "ArrowLeft"){
-
-        prevMedia();
-    }
-});
-
-/* ========================================= */
-/* INITIALIZE */
-/* ========================================= */
-
-fetchGalleryMedia();
-
-</script>
+        fetchGalleryMedia();
+    </script>
 </body>
 
 </html>
